@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth scroll-pt-24">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ScaleF&B — Digital Ordering & Operational Systems for F&B</title>
+  <meta name="description" content="Custom automated ordering systems, WhatsApp menus, and multi-branch dashboards for independent food & beverage businesses." />
+
+  <!-- Google Fonts: Playfair Display (Serif Headings) & Plus Jakarta Sans (Sans Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              orange: '#E05D36',
+              orangeHover: '#c84e2a',
+              charcoal: '#1F2937',
+              charcoalLight: '#374151',
+              charcoalMuted: '#6B7280',
+              bgOffWhite: '#FAFAFA',
+              cardBg: '#FFFFFF',
+              borderLight: '#E5E7EB',
+              orangeSoft: '#FFF2EE'
+            }
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #FAFAFA;
+      color: #1F2937;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .font-serif-heading {
+      font-family: 'Playfair Display', Georgia, serif;
+    }
+  </style>
+</head>
+<body id="top" class="bg-brand-bgOffWhite text-brand-charcoal antialiased selection:bg-brand-orangeSoft selection:text-brand-orange">
+
+  <!-- ======================== NAVIGATION ======================== -->
+  <header class="sticky top-0 z-50 bg-[#FAFAFA]/95 backdrop-blur-md border-b border-brand-borderLight">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Header Logo Anchor smoothly scrolling to top -->
+      <a href="#top" id="header-logo-link" class="flex items-center group cursor-pointer" aria-label="ScaleF&B - Back to top">
+        <img 
+          src="./logo.png" 
+          alt="ScaleF&B Logo" 
+          class="h-9 sm:h-10 md:h-12 w-auto object-contain transition-transform duration-200 group-hover:scale-105"
+        >
+      </a>
+
+      <!-- Desktop Links -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-brand-charcoalLight">
+        <a href="#case-studies" class="hover:text-brand-orange transition-colors">Case Studies</a>
+        <a href="#authority" class="hover:text-brand-orange transition-colors">Systems Philosophy</a>
+        <a href="#framework" class="hover:text-brand-orange transition-colors">The Framework</a>
+      </nav>
+
+      <!-- Nav CTA -->
+      <a href="#cta" class="inline-flex items-center justify-center px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm font-semibold text-white bg-brand-orange hover:bg-brand-orangeHover shadow-sm transition-all transform active:scale-95">
+        Let's Map Out Your Digital System
+      </a>
+    </div>
+  </header>
+
+
+  <!-- ======================== HERO SECTION ======================== -->
+  <section class="relative pt-12 pb-16 md:pt-24 md:pb-32 overflow-hidden">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 md:px-8 text-center">
+      
+      <!-- Sector Badge -->
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#E05D36]/20 bg-brand-orangeSoft text-brand-orange text-[11px] sm:text-xs md:text-sm font-bold tracking-wide uppercase mb-6 md:mb-8">
+        <span class="w-2 h-2 rounded-full bg-brand-orange animate-pulse"></span>
+        SCALEF&B OPERATIONAL SYSTEMS CONSULTANCY
+      </div>
+
+      <!-- Fluid Main Heading -->
+      <h1 class="font-serif-heading text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-brand-charcoal leading-[1.15] mb-6 md:mb-8 max-w-4xl mx-auto">
+        Every Missed Message is a missed order. <br />
+        <span class="italic text-brand-orange font-normal">Let's fix that.</span>
+      </h1>
+
+      <!-- Fluid Sub Heading -->
+      <p class="text-base sm:text-lg md:text-xl lg:text-2xl text-brand-charcoalLight font-normal max-w-3xl mx-auto leading-relaxed mb-8 md:mb-10">
+        Your next customer is searching online right now. I build automated digital ordering systems for independent F&B businesses so they find you — <strong class="text-brand-charcoal font-semibold">not your competitor.</strong>
+      </p>
+
+      <!-- Button Widths: w-full md:w-auto -->
+      <div class="flex flex-col md:flex-row items-center justify-center gap-3 sm:gap-4 mb-12 md:mb-16 w-full max-w-md md:max-w-none mx-auto">
+        <a href="#cta" class="w-full md:w-auto inline-flex items-center justify-center px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl text-base sm:text-lg font-bold text-white bg-brand-orange hover:bg-brand-orangeHover shadow-lg shadow-brand-orange/25 transition-all transform hover:-translate-y-0.5">
+          Let’s Map Out Your Digital System
+          <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+          </svg>
+        </a>
+
+        <a href="#case-studies" class="w-full md:w-auto inline-flex items-center justify-center px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl text-base sm:text-lg font-semibold text-brand-charcoal bg-white border border-gray-200 hover:border-brand-orange hover:bg-brand-orangeSoft transition-colors">
+          Explore Live Systems
+        </a>
+      </div>
+
+      <!-- Quick Metrics Strip: Fixed grid-cols-1 sm:grid-cols-3 stacking with no col-span-2 on mobile -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 pt-8 md:pt-10 border-t border-brand-borderLight text-center md:text-left max-w-4xl mx-auto">
+        <div class="p-4 sm:p-5 rounded-xl bg-white border border-brand-borderLight shadow-sm">
+          <p class="text-2xl sm:text-3xl font-bold text-brand-orange font-serif-heading">0%</p>
+          <p class="text-xs sm:text-sm text-brand-charcoalMuted mt-1">Marketplace Aggregator Commissions</p>
+        </div>
+        <div class="p-4 sm:p-5 rounded-xl bg-white border border-brand-borderLight shadow-sm">
+          <p class="text-2xl sm:text-3xl font-bold text-brand-charcoal font-serif-heading">2x</p>
+          <p class="text-xs sm:text-sm text-brand-charcoalMuted mt-1">Holiday Peak Order Volume</p>
+        </div>
+        <div class="p-4 sm:p-5 rounded-xl bg-white border border-brand-borderLight shadow-sm">
+          <p class="text-2xl sm:text-3xl font-bold text-brand-charcoal font-serif-heading">100%</p>
+          <p class="text-xs sm:text-sm text-brand-charcoalMuted mt-1">Direct WhatsApp & Multi-Branch Visibility</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ======================== CASE STUDIES SECTION ======================== -->
+  <section id="case-studies" class="py-16 md:py-28 bg-white border-y border-brand-borderLight">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 md:px-8">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto mb-12 md:mb-20">
+        <span class="text-brand-orange font-bold text-xs uppercase tracking-widest">Proven Case Studies & Deployments</span>
+        <h2 class="font-serif-heading text-2xl sm:text-4xl md:text-5xl font-bold text-brand-charcoal mt-3 mb-4">
+          Engineered Systems Solving Real Bottlenecks
+        </h2>
+        <p class="text-brand-charcoalLight text-sm sm:text-base md:text-lg">
+          Custom digital architectures deployed to eliminate administrative bottlenecks, protect margins, and allow F&B founders to scale cleanly.
+        </p>
+      </div>
+
+      <!-- Case Studies List -->
+      <div class="space-y-12 md:space-y-16">
+
+        <!-- ================= CASE STUDY 1 ================= -->
+        <div class="rounded-2xl border border-gray-200 bg-[#FAFAFA] overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+          <div class="p-5 md:p-8 lg:p-12">
+            
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 md:gap-4 pb-5 md:pb-6 border-b border-gray-200">
+              <span class="inline-flex self-start px-3.5 py-1.5 rounded-md text-[11px] sm:text-xs font-bold tracking-wide uppercase bg-[#E05D36]/10 text-[#E05D36]">
+                Case Study (01) — Artisan Bakery System
+              </span>
+              <span class="text-xs font-semibold uppercase tracking-wider text-gray-500">
+                High Customization • Zero Friction
+              </span>
+            </div>
+
+            <!-- Case Study <h3> Header: text-2xl md:text-3xl lg:text-4xl -->
+            <h3 class="font-serif-heading text-2xl md:text-3xl lg:text-4xl font-bold text-[#1F2937] mt-6 md:mt-8 mb-6 md:mb-8 leading-snug">
+              Automated Custom Ordering System for Artisan Bakers
+            </h3>
+
+            <!-- 3-Column Grid with p-4 md:p-6 internal padding -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-8 md:mb-10 items-stretch">
+              
+              <!-- Card 1: Problem -->
+              <div class="bg-white p-4 md:p-6 rounded-xl border border-gray-200 flex flex-col justify-between h-full shadow-sm">
+                <div>
+                  <div class="w-8 h-8 rounded-lg bg-red-50 text-red-500 flex items-center justify-center font-bold text-sm mb-3 md:mb-4 shrink-0">!</div>
+                  <h4 class="text-xs font-bold uppercase tracking-wider text-gray-500 mb-0">The Problem</h4>
+                </div>
+                <div class="pt-3 md:pt-4 pb-1 flex-1 flex flex-col justify-start">
+                  <p class="text-sm sm:text-[15px] text-[#1F2937] leading-relaxed font-medium">
+                    Popular bakers lose revenue and time managing custom orders scattered across chaotic DMs.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Card 2: Solution -->
+              <div class="bg-white p-4 md:p-6 rounded-xl border border-gray-200 flex flex-col justify-between h-full shadow-sm">
+                <div>
+                  <div class="w-8 h-8 rounded-lg bg-amber-50 text-amber-500 flex items-center justify-center font-bold text-sm mb-3 md:mb-4 shrink-0">⚙</div>
+                  <h4 class="text-xs font-bold uppercase tracking-wider text-gray-500 mb-0">The Solution</h4>
+                </div>
+                <div class="pt-3 md:pt-4 pb-1 flex-1 flex flex-col justify-start">
+                  <p class="text-sm sm:text-[15px] text-[#1F2937] leading-relaxed font-medium">
+                    A streamlined digital system that automatically collects flavours, dates, designs and advance payments upfront.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Card 3: Result -->
+              <div class="bg-[#E05D36]/5 p-4 md:p-6 rounded-xl border border-[#E05D36]/20 flex flex-col justify-between h-full shadow-sm">
+                <div>
+                  <div class="w-8 h-8 rounded-lg bg-[#E05D36] text-white flex items-center justify-center font-bold text-sm mb-3 md:mb-4 shrink-0">✓</div>
+                  <h4 class="text-xs font-bold uppercase tracking-wider text-[#E05D36] mb-0">The Result</h4>
+                </div>
+                <div class="pt-3 md:pt-4 pb-1 flex-1 flex flex-col justify-start">
+                  <p class="text-sm sm:text-[15px] text-[#1F2937] font-semibold leading-relaxed">
+                    Handled twice the holiday order volume without the administrative chaos.
+                  </p>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Case Study 01 Footer Button Trigger -->
+            <div class="flex flex-col md:flex-row items-center md:items-center justify-between pt-5 md:pt-6 border-t border-gray-200 gap-4">
+              <span class="text-xs sm:text-sm text-gray-500 font-medium text-center md:text-left">Deployment time: 5–7 business days</span>
+              <button 
+                type="button" 
+                id="btn-open-cs1" 
+                class="w-full md:w-auto inline-flex items-center justify-center px-6 py-3 rounded-lg text-sm font-bold text-white bg-brand-orange hover:bg-brand-orangeHover transition-all shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-brand-orange focus:ring-offset-2"
+              >
+                View Case Study & Demo
+                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                </svg>
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ================= CASE STUDY 2 ================= -->
+        <div class="rounded-2xl border border-gray-200 bg-[#FAFAFA] overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+          <div class="p-5 md:p-8 lg:p-12">
+            
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 md:gap-4 pb-5 md:pb-6 border-b border-gray-200">
+              <span class="inline-flex self-start px-3.5 py-1.5 rounded-md text-[11px] sm:text-xs font-bold tracking-wide uppercase bg-[#E05D36]/10 text-[#E05D36]">
+                Case Study (02) — Cloud Kitchen System
+              </span>
+              <span class="text-xs font-semibold uppercase tracking-wider text-gray-500">
+                0% Commission • Direct Ordering
+              </span>
+            </div>
+
+            <!-- Case Study <h3> Header: text-2xl md:text-3xl lg:text-4xl -->
+            <h3 class="font-serif-heading text-2xl md:text-3xl lg:text-4xl font-bold text-[#1F2937] mt-6 md:mt-8 mb-6 md:mb-8 leading-snug">
+              Commission-free direct ordering web apps for High Volume cloud kitchens
+            </h3>
+
+            <!-- 3-Column Grid with p-4 md:p-6 internal padding -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-8 md:mb-10 items-stretch">
+              <!-- Card 1: Problem -->
+              <div class="bg-white p-4 md:p-6 rounded-xl border border-gray-200 flex flex-col justify-between h-full shadow-sm">
+                <div>
+                  <div class="w-8 h-8 rounded-lg bg-red-50 text-red-500 flex items-center justify-center font-bold text-sm mb-3 md:mb-4 shrink-0">!</div>
+                  <h4 class="text-xs font-bold uppercase tracking-wider text-gray-500 mb-0">The Problem</h4>
+                </div>
+                <div class="pt-3 md:pt-4 pb-1 flex-1 flex flex-col justify-start">
+                  <p class="text-sm sm:text-[15px] text-[#1F2937] leading-relaxed font-medium">
+                    Independent cloud kitchens lose 20% to 30% of their revenue to third party aggregator commissions and waste massive amounts of staff managing manual phone orders.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Card 2: Solution -->
+              <div class="bg-white p-4 md:p-6 rounded-xl border border-gray-200 flex flex-col justify-between h-full shadow-sm">
+                <div>
+                  <div class="w-8 h-8 rounded-lg bg-amber-50 text-amber-500 flex items-center justify-center font-bold text-sm mb-3 md:mb-4 shrink-0">⚙</div>
+                  <h4 class="text-xs font-bold uppercase tracking-wider text-gray-500 mb-0">The Solution</h4>
+                </div>
+                <div class="pt-3 md:pt-4 pb-1 flex-1 flex flex-col justify-start">
+                  <p class="text-sm sm:text-[15px] text-[#1F2937] leading-relaxed font-medium">
+                    Built a lightweight, commission-free digital menu. When a customer clicks 'order', the system automatically calculates totals and sends a perfectly formatted, error-free order directly to the kitchen's WA. No third-party apps, no manual data entry.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Card 3: Result -->
+              <div class="bg-[#E05D36]/5 p-4 md:p-6 rounded-xl border border-[#E05D36]/20 flex flex-col justify-between h-full shadow-sm">
+                <div>
+                  <div class="w-8 h-8 rounded-lg bg-[#E05D36] text-white flex items-center justify-center font-bold text-sm mb-3 md:mb-4 shrink-0">✓</div>
+                  <h4 class="text-xs font-bold uppercase tracking-wider text-[#E05D36] mb-0">The Result</h4>
+                </div>
+                <div class="pt-3 md:pt-4 pb-1 flex-1 flex flex-col justify-start">
+                  <p class="text-sm sm:text-[15px] text-[#1F2937] font-semibold leading-relaxed">
+                    Bypasses 3rd party platforms completely, saving the business 20-30% in commission fees. This allowed the kitchen to protect its profit margins while keeping food costs low and accessible for loyal customers.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Case Study 02 Footer Button Trigger -->
+            <div class="flex flex-col md:flex-row items-center md:items-center justify-between pt-5 md:pt-6 border-t border-gray-200 gap-4">
+              <span class="text-xs sm:text-sm text-gray-500 font-medium text-center md:text-left">Deployment time: 5–7 business days</span>
+              <button 
+                type="button" 
+                id="btn-open-cs2" 
+                class="w-full md:w-auto inline-flex items-center justify-center px-6 py-3 rounded-lg text-sm font-bold text-white bg-brand-orange hover:bg-brand-orangeHover transition-all shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-brand-orange focus:ring-offset-2"
+              >
+                View Case Study & Demo
+                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                </svg>
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ================= CASE STUDY 3 ================= -->
+        <div class="rounded-2xl border border-gray-200 bg-[#FAFAFA] overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+          <div class="p-5 md:p-8 lg:p-12">
+            
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 md:gap-4 pb-5 md:pb-6 border-b border-gray-200">
+              <span class="inline-flex self-start px-3.5 py-1.5 rounded-md text-[11px] sm:text-xs font-bold tracking-wide uppercase bg-[#E05D36]/10 text-[#E05D36]">
+                Case Study (03) — Franchise Command Center
+              </span>
+              <span class="text-xs font-semibold uppercase tracking-wider text-gray-500">
+                Multi-Branch • Centralized Data
+              </span>
+            </div>
+
+            <!-- Case Study <h3> Header: text-2xl md:text-3xl lg:text-4xl -->
+            <h3 class="font-serif-heading text-2xl md:text-3xl lg:text-4xl font-bold text-[#1F2937] mt-6 md:mt-8 mb-6 md:mb-8 leading-snug">
+              Multi-Branch operational Dashboard & franchise Hub for High-Traffic cafes
+            </h3>
+
+            <!-- 3-Column Grid with p-4 md:p-6 internal padding -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-8 md:mb-10 items-stretch">
+              <!-- Card 1: Problem -->
+              <div class="bg-white p-4 md:p-6 rounded-xl border border-gray-200 flex flex-col justify-between h-full shadow-sm">
+                <div>
+                  <div class="w-8 h-8 rounded-lg bg-red-50 text-red-500 flex items-center justify-center font-bold text-sm mb-3 md:mb-4 shrink-0">!</div>
+                  <h4 class="text-xs font-bold uppercase tracking-wider text-gray-500 mb-0">The Problem</h4>
+                </div>
+                <div class="pt-3 md:pt-4 pb-1 flex-1 flex flex-col justify-start">
+                  <p class="text-sm sm:text-[15px] text-[#1F2937] leading-relaxed font-medium">
+                    Scaling food brands suffer from severe operational confusion, siloed data across branches, and rising management overhead as they attempt to track orders, inventory, staff and sales manually.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Card 2: Solution -->
+              <div class="bg-white p-4 md:p-6 rounded-xl border border-gray-200 flex flex-col justify-between h-full shadow-sm">
+                <div>
+                  <div class="w-8 h-8 rounded-lg bg-amber-50 text-amber-500 flex items-center justify-center font-bold text-sm mb-3 md:mb-4 shrink-0">⚙</div>
+                  <h4 class="text-xs font-bold uppercase tracking-wider text-gray-500 mb-0">The Solution</h4>
+                </div>
+                <div class="pt-3 md:pt-4 pb-1 flex-1 flex flex-col justify-start">
+                  <p class="text-sm sm:text-[15px] text-[#1F2937] leading-relaxed font-medium">
+                    Engineered a centralized digital command center. Built an intuitive, unified interface that aggregates multi-branch data — giving owners real-time control over orders, inventory tracking, staff scheduling, customer loyalty profiles, and cross-location sales metrics.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Card 3: Result -->
+              <div class="bg-[#E05D36]/5 p-4 md:p-6 rounded-xl border border-[#E05D36]/20 flex flex-col justify-between h-full shadow-sm">
+                <div>
+                  <div class="w-8 h-8 rounded-lg bg-[#E05D36] text-white flex items-center justify-center font-bold text-sm mb-3 md:mb-4 shrink-0">✓</div>
+                  <h4 class="text-xs font-bold uppercase tracking-wider text-[#E05D36] mb-0">The Result</h4>
+                </div>
+                <div class="pt-3 md:pt-4 pb-1 flex-1 flex flex-col justify-start">
+                  <p class="text-sm sm:text-[15px] text-[#1F2937] font-semibold leading-relaxed">
+                    Enabled one-click visibility across the entire business ecosystem. This completely eliminated front of house operational bottlenecks and cut down administrative confusion, allowing management to make lightning-fast, data-driven decisions for franchise expansion.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Case Study 03 Footer Button Trigger -->
+            <div class="flex flex-col md:flex-row items-center md:items-center justify-between pt-5 md:pt-6 border-t border-gray-200 gap-4">
+              <span class="text-xs sm:text-sm text-gray-500 font-medium text-center md:text-left">Built for 2 to 20+ multi-unit locations</span>
+              <button 
+                type="button" 
+                id="btn-open-cs3" 
+                class="w-full md:w-auto inline-flex items-center justify-center px-6 py-3 rounded-lg text-sm font-bold text-white bg-brand-orange hover:bg-brand-orangeHover transition-all shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-brand-orange focus:ring-offset-2"
+              >
+                View Case Study & Demo
+                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                </svg>
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ======================== TRUST & AUTHORITY SECTION ======================== -->
+  <section id="authority" class="py-16 md:py-28 bg-[#FAFAFA]">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 md:px-8">
+      
+      <div class="p-5 sm:p-8 md:p-14 rounded-3xl bg-white border border-brand-borderLight shadow-sm relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-32 h-32 bg-brand-orangeSoft rounded-bl-full pointer-events-none -z-0"></div>
+
+        <div class="relative z-10">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded bg-brand-orangeSoft text-brand-orange text-[11px] sm:text-xs font-bold uppercase tracking-widest mb-4 md:mb-6">
+            Trust & Authority
+          </div>
+
+          <h2 class="font-serif-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-brand-charcoal leading-tight mb-6 md:mb-8">
+            Why High-Performing F&B Businesses Move Away From Manual Chaos
+          </h2>
+
+          <!-- Exact Handwritten Narrative Text -->
+          <div class="space-y-4 sm:space-y-6 text-brand-charcoalLight text-sm sm:text-base md:text-lg leading-relaxed">
+            <p>
+              Whether you're an artisan baker capping out at 30 custom orders a week, or a high-traffic café struggling with front-of-house bottlenecks, <strong class="text-brand-charcoal">manual processes eventually stifle your growth.</strong>
+            </p>
+            <p>
+              I build the operational streamlined digital systems — from DM automations to centralized franchise dashboards that rescue the independent F&B business from chaos of scattered DMs, last-minute changes, and holiday order rushes.
+            </p>
+            <p class="font-semibold text-brand-charcoal text-base sm:text-lg md:text-xl border-l-4 border-brand-orange pl-4 py-1 italic font-serif-heading">
+              "These systems will help you move beyond those limits without sacrificing the customer experience."
+            </p>
+          </div>
+
+          <!-- Proof Badges -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-8 md:pt-10 mt-8 md:mt-10 border-t border-brand-borderLight text-center md:text-left">
+            <div>
+              <p class="text-sm font-bold text-brand-charcoal">No Expensive Subscriptions</p>
+              <p class="text-xs text-brand-charcoalMuted mt-1">Built on owned infrastructure and direct WhatsApp channels.</p>
+            </div>
+            <div>
+              <p class="text-sm font-bold text-brand-charcoal">100% Direct Settlement</p>
+              <p class="text-xs text-brand-charcoalMuted mt-1">Instant advance payments directly into your business account.</p>
+            </div>
+            <div>
+              <p class="text-sm font-bold text-brand-charcoal">F&B Specialized</p>
+              <p class="text-xs text-brand-charcoalMuted mt-1">Zero generic agency bloat. Tailored exclusively for food & beverage.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ======================== THE FRAMEWORK SECTION ======================== -->
+  <section id="framework" class="py-16 md:py-28 bg-white border-t border-brand-borderLight">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 md:px-8">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto mb-12 md:mb-20">
+        <span class="inline-block px-3.5 py-1 rounded-md text-xs font-bold tracking-widest uppercase bg-brand-orangeSoft text-brand-orange mb-3 md:mb-4">
+          Our Process
+        </span>
+        <h2 class="font-serif-heading text-2xl sm:text-4xl md:text-5xl font-bold text-brand-charcoal mb-4 md:mb-5">
+          The 3-Step Deployment Framework
+        </h2>
+        <p class="text-brand-charcoalLight text-sm sm:text-base md:text-lg leading-relaxed">
+          I do not build generic websites. I engineer digital operational systems tailored specifically to your kitchen's workflow in three distinct phases.
+        </p>
+      </div>
+
+      <!-- 3-Phase Grid with mobile padding: p-5 md:p-8 lg:p-10 -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 items-stretch">
+        
+        <!-- Phase 1 -->
+        <div class="h-full bg-[#FAFAFA] p-5 md:p-8 lg:p-10 rounded-2xl border border-brand-borderLight flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-brand-orange/30">
+          <div>
+            <div class="flex items-center justify-between mb-4 md:mb-6">
+              <span class="text-xs font-bold uppercase tracking-widest text-brand-orange border-b border-brand-orange pb-1 inline-block">
+                Phase 01
+              </span>
+              <span class="text-2xl font-serif-heading font-bold text-brand-charcoal/20">01</span>
+            </div>
+            <h3 class="font-serif-heading text-lg sm:text-xl md:text-2xl font-bold text-brand-charcoal mb-3 md:mb-4">
+              Operational Audit
+            </h3>
+            <p class="text-sm sm:text-base text-brand-charcoalLight leading-relaxed">
+              We map out your current bottlenecks, manual data entry points, and profit leaks.
+            </p>
+          </div>
+          <div class="mt-6 md:mt-8 pt-4 border-t border-brand-borderLight/60 text-xs font-semibold text-brand-charcoalMuted">
+            Deliverable: Operational Gap Blueprint
+          </div>
+        </div>
+
+        <!-- Phase 2 -->
+        <div class="h-full bg-[#FAFAFA] p-5 md:p-8 lg:p-10 rounded-2xl border border-brand-borderLight flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-brand-orange/30">
+          <div>
+            <div class="flex items-center justify-between mb-4 md:mb-6">
+              <span class="text-xs font-bold uppercase tracking-widest text-brand-orange border-b border-brand-orange pb-1 inline-block">
+                Phase 02
+              </span>
+              <span class="text-2xl font-serif-heading font-bold text-brand-charcoal/20">02</span>
+            </div>
+            <h3 class="font-serif-heading text-lg sm:text-xl md:text-2xl font-bold text-brand-charcoal mb-3 md:mb-4">
+              Digital Architecture
+            </h3>
+            <p class="text-sm sm:text-base text-brand-charcoalLight leading-relaxed">
+              I design a custom, commission-free ordering flow that routes directly into your WhatsApp or point-of-sale system.
+            </p>
+          </div>
+          <div class="mt-6 md:mt-8 pt-4 border-t border-brand-borderLight/60 text-xs font-semibold text-brand-charcoalMuted">
+            Deliverable: Commission-Free Direct Interface
+          </div>
+        </div>
+
+        <!-- Phase 3 -->
+        <div class="h-full bg-[#FAFAFA] p-5 md:p-8 lg:p-10 rounded-2xl border border-brand-borderLight flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-brand-orange/30">
+          <div>
+            <div class="flex items-center justify-between mb-4 md:mb-6">
+              <span class="text-xs font-bold uppercase tracking-widest text-brand-orange border-b border-brand-orange pb-1 inline-block">
+                Phase 03
+              </span>
+              <span class="text-2xl font-serif-heading font-bold text-brand-charcoal/20">03</span>
+            </div>
+            <h3 class="font-serif-heading text-lg sm:text-xl md:text-2xl font-bold text-brand-charcoal mb-3 md:mb-4">
+              Frictionless Deployment
+            </h3>
+            <p class="text-sm sm:text-base text-brand-charcoalLight leading-relaxed">
+              A seamless launch in 5–7 days with zero operational downtime and full handover training.
+            </p>
+          </div>
+          <div class="mt-6 md:mt-8 pt-4 border-t border-brand-borderLight/60 text-xs font-semibold text-brand-charcoalMuted">
+            Deliverable: Staff Training & Zero-Downtime Rollout
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ======================== FINAL CTA SECTION ======================== -->
+  <section id="cta" class="py-16 md:py-28 bg-[#1F2937] text-white relative overflow-hidden">
+    <!-- Subtle Background Accents -->
+    <div class="absolute -top-24 -left-24 w-96 h-96 bg-brand-orange/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute -bottom-24 -right-24 w-96 h-96 bg-brand-orange/10 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 md:px-8 text-center relative z-10">
+      
+      <span class="inline-block text-brand-orange text-xs font-bold uppercase tracking-widest mb-3 md:mb-4">
+        Ready For Frictionless Growth?
+      </span>
+
+      <!-- Fluid Micro Copy -->
+      <h2 class="font-serif-heading text-2xl sm:text-4xl md:text-5xl font-bold leading-tight max-w-3xl mx-auto mb-4 md:mb-6">
+        Stop letting manual processes, chaotic DMs, and 30% commission fees dictate your growth.
+      </h2>
+      
+      <p class="text-base sm:text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-8 md:mb-10 font-medium">
+        Let's build a system that works as hard as you.
+      </p>
+
+      <!-- Primary Action: w-full md:w-auto -->
+      <div class="inline-block w-full md:w-auto p-1.5 rounded-2xl bg-white/10 backdrop-blur-md">
+        <a href="mailto:scalefnb@gmail.com?subject=Map%20Out%20My%20Digital%20System" class="w-full md:w-auto inline-flex items-center justify-center px-6 sm:px-10 md:px-12 py-4 sm:py-5 rounded-xl text-base sm:text-lg md:text-xl font-bold text-white bg-brand-orange hover:bg-brand-orangeHover transition-all">
+          Let's Map Out Your Digital System
+          <svg class="w-5 sm:w-6 h-5 sm:h-6 ml-2 sm:ml-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+          </svg>
+        </a>
+      </div>
+
+      <p class="text-xs text-gray-400 mt-4 md:mt-5">
+        Zero obligations. We audit your current order flow and provide a straightforward blueprint.
+      </p>
+
+    </div>
+  </section>
+
+
+  <!-- ======================== FOOTER ======================== -->
+  <footer class="bg-[#FAFAFA] border-t border-gray-200 py-10 md:py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 grid grid-cols-1 md:grid-cols-3 gap-6 items-center text-center md:text-left">
+      
+      <!-- Left: Brand Logo -->
+      <a href="#top" class="flex items-center justify-self-center md:justify-self-start" aria-label="ScaleF&B - Back to top">
+        <img 
+          src="./logo.png" 
+          alt="ScaleF&B Logo" 
+          class="h-8 sm:h-10 w-auto object-contain transition-transform duration-200 hover:scale-105"
+        >
+      </a>
+
+      <!-- Center: Copyright Text -->
+      <p class="text-xs text-gray-500 font-medium justify-self-center">
+        &copy; <script>document.write(new Date().getFullYear())</script> ScaleF&B. Specialized Operational Infrastructure for Food & Beverage.
+      </p>
+
+      <!-- Right: Navigation Links -->
+      <div class="flex flex-wrap justify-center items-center gap-4 sm:gap-6 text-xs font-semibold text-gray-500 justify-self-center md:justify-self-end">
+        <a href="#case-studies" class="hover:text-[#E05D36] transition-colors">Case Studies</a>
+        <a href="#authority" class="hover:text-[#E05D36] transition-colors">Philosophy</a>
+        <a href="#framework" class="hover:text-[#E05D36] transition-colors">The Framework</a>
+        <a href="#cta" class="hover:text-[#E05D36] transition-colors">Contact</a>
+      </div>
+
+    </div>
+  </footer>
+
+
+  <!-- ======================== CASE STUDY 01 INTERACTIVE MODAL ======================== -->
+  <div 
+    id="modal-cs1" 
+    class="fixed inset-0 z-[100] hidden items-center justify-center p-3 sm:p-6 md:p-10 overflow-y-auto"
+    role="dialog" 
+    aria-modal="true" 
+    aria-labelledby="modal-cs1-title"
+  >
+    <!-- Dark Backdrop Overlay -->
+    <div 
+      id="backdrop-cs1" 
+      class="fixed inset-0 bg-[#1F2937]/75 backdrop-blur-sm transition-opacity duration-300 cursor-pointer pointer-events-auto"
+    ></div>
+
+    <!-- Modal Dialog Box -->
+    <div 
+      id="container-cs1"
+      class="relative w-full max-w-4xl bg-white rounded-2xl shadow-2xl border border-brand-borderLight overflow-hidden z-10 my-auto flex flex-col max-h-[90vh] pointer-events-auto"
+    >
+      
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between px-5 sm:px-8 md:px-10 py-4 sm:py-5 border-b border-brand-borderLight bg-[#FAFAFA]">
+        <div class="flex items-center gap-2 sm:gap-3">
+          <span class="px-2.5 sm:px-3 py-1 rounded text-[10px] sm:text-xs font-bold uppercase tracking-wider bg-brand-orangeSoft text-brand-orange">
+            Deep Dive & Interactive Demo
+          </span>
+          <span class="text-xs text-brand-charcoalMuted hidden sm:inline">Case Study (01)</span>
+        </div>
+        
+        <!-- Close "X" Button -->
+        <button 
+          type="button" 
+          id="btn-close-cs1" 
+          class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white border border-brand-borderLight flex items-center justify-center text-brand-charcoal hover:text-brand-orange hover:bg-brand-orangeSoft transition-colors focus:outline-none shrink-0"
+          aria-label="Close modal"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Modal Content (Scrollable) -->
+      <div class="px-5 sm:px-8 md:px-10 py-6 sm:py-8 overflow-y-auto space-y-6 sm:space-y-8 text-brand-charcoal">
+        
+        <!-- Fluid Hero Headline -->
+        <div>
+          <h3 id="modal-cs1-title" class="font-serif-heading text-xl sm:text-2xl md:text-4xl font-bold text-brand-charcoal leading-snug">
+            Scaling Custom Bakery Orders Without the Administrative Chaos
+          </h3>
+        </div>
+
+        <div class="space-y-4 sm:space-y-6">
+          
+          <!-- The Bottleneck -->
+          <div class="p-5 sm:p-7 rounded-xl bg-[#FAFAFA] border border-brand-borderLight transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-red-200 group">
+            <div class="flex items-center gap-3 mb-2.5 sm:mb-3">
+              <span class="w-2.5 h-2.5 rounded-full bg-red-500 group-hover:scale-125 transition-transform duration-300"></span>
+              <h4 class="font-serif-heading text-base sm:text-lg md:text-xl font-bold text-red-600 tracking-normal">The Bottleneck</h4>
+            </div>
+            <p class="text-sm sm:text-[15px] text-gray-600 leading-relaxed sm:leading-loose font-sans">
+              This popular artisan bakery was capping its revenue because the founder spent four hours a day manually replying to Instagram DMs, checking calendar availability, and chasing payment links. Every missed message was a lost custom order.
+            </p>
+          </div>
+
+          <!-- The Architecture -->
+          <div class="p-5 sm:p-7 rounded-xl bg-[#FAFAFA] border border-brand-borderLight transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-amber-200 group">
+            <div class="flex items-center gap-3 mb-2.5 sm:mb-3">
+              <span class="w-2.5 h-2.5 rounded-full bg-amber-500 group-hover:scale-125 transition-transform duration-300"></span>
+              <h4 class="font-serif-heading text-base sm:text-lg md:text-xl font-bold text-brand-charcoal tracking-normal">The Architecture</h4>
+            </div>
+            <p class="text-sm sm:text-[15px] text-gray-600 leading-relaxed sm:leading-loose font-sans">
+              I engineered a commission-free web interface featuring dynamic date-blocking, visual flavor customization, and automated upfront payment collection. The system bypasses third-party apps entirely, routing perfectly formatted, error-free orders directly to the kitchen's WhatsApp.
+            </p>
+          </div>
+
+          <!-- The ROI -->
+          <div class="p-5 sm:p-7 rounded-xl bg-brand-orangeSoft/60 border border-[#E05D36]/25 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-brand-orange group">
+            <div class="flex items-center gap-3 mb-2.5 sm:mb-3">
+              <span class="w-2.5 h-2.5 rounded-full bg-brand-orange group-hover:scale-125 transition-transform duration-300"></span>
+              <h4 class="font-serif-heading text-base sm:text-lg md:text-xl font-bold text-brand-orange tracking-normal">The ROI</h4>
+            </div>
+            <p class="text-sm sm:text-[15px] text-gray-600 leading-relaxed sm:leading-loose font-sans">
+              The bakery successfully handled 2X their holiday peak volume with zero manual messaging. 100% of customer data was captured in-house, and 0% was lost to aggregator commission fees.
+            </p>
+          </div>
+
+        </div>
+
+        <!-- Button Width: w-full md:w-auto -->
+        <div class="mt-6 pt-4 pb-2 border-t border-gray-100">
+          <a 
+            href="https://scalefnb.com/demo/artisan-bakery" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="w-full md:w-auto inline-flex items-center justify-center gap-3 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl text-base sm:text-lg font-bold text-white bg-[#E05D36] hover:bg-[#c84e2a] shadow-lg shadow-[#E05D36]/25 transition-all transform hover:-translate-y-0.5 active:translate-y-0"
+          >
+            <span>View Live Demo</span>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="px-5 sm:px-8 md:px-10 py-4 sm:py-5 bg-[#FAFAFA] border-t border-brand-borderLight flex flex-col md:flex-row items-center justify-between gap-3 sm:gap-4">
+        <span class="text-xs text-brand-charcoalMuted text-center md:text-left">Customized flow deployment takes 5–7 business days.</span>
+        <a 
+          href="mailto:scalefnb@gmail.com?subject=Artisan%20Bakery%20System%20Blueprint" 
+          class="w-full md:w-auto inline-flex items-center justify-center px-5 sm:px-6 py-2.5 rounded-lg text-sm font-semibold text-brand-charcoal hover:text-brand-orange bg-white hover:bg-gray-50 border border-brand-borderLight transition-colors"
+        >
+          Request Bakery Blueprint
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ======================== CASE STUDY 02 INTERACTIVE MODAL ======================== -->
+  <div 
+    id="modal-cs2" 
+    class="fixed inset-0 z-[100] hidden items-center justify-center p-3 sm:p-6 md:p-10 overflow-y-auto"
+    role="dialog" 
+    aria-modal="true" 
+    aria-labelledby="modal-cs2-title"
+  >
+    <!-- Dark Backdrop Overlay -->
+    <div 
+      id="backdrop-cs2" 
+      class="fixed inset-0 bg-[#1F2937]/75 backdrop-blur-sm transition-opacity duration-300 cursor-pointer pointer-events-auto"
+    ></div>
+
+    <!-- Modal Dialog Box -->
+    <div 
+      id="container-cs2"
+      class="relative w-full max-w-4xl bg-white rounded-2xl shadow-2xl border border-brand-borderLight overflow-hidden z-10 my-auto flex flex-col max-h-[90vh] pointer-events-auto"
+    >
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between px-5 sm:px-8 md:px-10 py-4 sm:py-5 border-b border-brand-borderLight bg-[#FAFAFA]">
+        <div class="flex items-center gap-2 sm:gap-3">
+          <span class="px-2.5 sm:px-3 py-1 rounded text-[10px] sm:text-xs font-bold uppercase tracking-wider bg-brand-orangeSoft text-brand-orange">
+            Deep Dive & Interactive Demo
+          </span>
+          <span class="text-xs text-brand-charcoalMuted hidden sm:inline">Case Study (02)</span>
+        </div>
+        
+        <!-- Close "X" Button -->
+        <button 
+          type="button" 
+          id="btn-close-cs2" 
+          class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white border border-brand-borderLight flex items-center justify-center text-brand-charcoal hover:text-brand-orange hover:bg-brand-orangeSoft transition-colors focus:outline-none shrink-0"
+          aria-label="Close modal"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Modal Content (Scrollable) -->
+      <div class="px-5 sm:px-8 md:px-10 py-6 sm:py-8 overflow-y-auto space-y-6 sm:space-y-8 text-brand-charcoal">
+        <div>
+          <h3 id="modal-cs2-title" class="font-serif-heading text-xl sm:text-2xl md:text-4xl font-bold text-brand-charcoal leading-snug">
+            Commission-Free Direct Ordering Web Apps
+          </h3>
+        </div>
+
+        <div class="space-y-4 sm:space-y-6">
+          <!-- The Bottleneck -->
+          <div class="p-5 sm:p-7 rounded-xl bg-[#FAFAFA] border border-brand-borderLight transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-red-200 group">
+            <div class="flex items-center gap-3 mb-2.5 sm:mb-3">
+              <span class="w-2.5 h-2.5 rounded-full bg-red-500 group-hover:scale-125 transition-transform duration-300"></span>
+              <h4 class="font-serif-heading text-base sm:text-lg md:text-xl font-bold text-red-600 tracking-normal">The Bottleneck</h4>
+            </div>
+            <p class="text-sm sm:text-[15px] text-gray-600 leading-relaxed sm:leading-loose font-sans">
+              Independent cloud kitchens lose 20% to 30% of their revenue to third-party aggregator commissions and waste massive amounts of staff time managing manual phone orders.
+            </p>
+          </div>
+
+          <!-- The Architecture -->
+          <div class="p-5 sm:p-7 rounded-xl bg-[#FAFAFA] border border-brand-borderLight transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-amber-200 group">
+            <div class="flex items-center gap-3 mb-2.5 sm:mb-3">
+              <span class="w-2.5 h-2.5 rounded-full bg-amber-500 group-hover:scale-125 transition-transform duration-300"></span>
+              <h4 class="font-serif-heading text-base sm:text-lg md:text-xl font-bold text-brand-charcoal tracking-normal">The Architecture</h4>
+            </div>
+            <p class="text-sm sm:text-[15px] text-gray-600 leading-relaxed sm:leading-loose font-sans">
+              Built a lightweight, commission-free digital menu. When a customer clicks 'order', the system automatically calculates totals and sends a perfectly formatted, error-free order directly to the kitchen's WhatsApp. No third-party apps, no manual data entry.
+            </p>
+          </div>
+
+          <!-- The ROI -->
+          <div class="p-5 sm:p-7 rounded-xl bg-brand-orangeSoft/60 border border-[#E05D36]/25 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-brand-orange group">
+            <div class="flex items-center gap-3 mb-2.5 sm:mb-3">
+              <span class="w-2.5 h-2.5 rounded-full bg-brand-orange group-hover:scale-125 transition-transform duration-300"></span>
+              <h4 class="font-serif-heading text-base sm:text-lg md:text-xl font-bold text-brand-orange tracking-normal">The ROI</h4>
+            </div>
+            <p class="text-sm sm:text-[15px] text-gray-600 leading-relaxed sm:leading-loose font-sans">
+              Bypasses 3rd party platforms completely, saving the business 20–30% in commission fees. This allowed the kitchen to protect its profit margins while keeping food costs low and accessible for loyal customers.
+            </p>
+          </div>
+        </div>
+
+        <!-- Button Width: w-full md:w-auto -->
+        <div class="mt-6 pt-4 pb-2 border-t border-gray-100">
+          <a 
+            href="https://scalefnb.com/demo/cloud-kitchen" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="w-full md:w-auto inline-flex items-center justify-center gap-3 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl text-base sm:text-lg font-bold text-white bg-[#E05D36] hover:bg-[#c84e2a] shadow-lg shadow-[#E05D36]/25 transition-all transform hover:-translate-y-0.5 active:translate-y-0"
+          >
+            <span>View Live Demo</span>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="px-5 sm:px-8 md:px-10 py-4 sm:py-5 bg-[#FAFAFA] border-t border-brand-borderLight flex flex-col md:flex-row items-center justify-between gap-3 sm:gap-4">
+        <span class="text-xs text-brand-charcoalMuted text-center md:text-left">Preserves 100% of customer contact data and margins.</span>
+        <a 
+          href="mailto:scalefnb@gmail.com?subject=Cloud%20Kitchen%20System%20Blueprint" 
+          class="w-full md:w-auto inline-flex items-center justify-center px-5 sm:px-6 py-2.5 rounded-lg text-sm font-semibold text-brand-charcoal hover:text-brand-orange bg-white hover:bg-gray-50 border border-brand-borderLight transition-colors"
+        >
+          Request Kitchen Blueprint
+        </a>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ======================== CASE STUDY 03 INTERACTIVE MODAL ======================== -->
+  <div 
+    id="modal-cs3" 
+    class="fixed inset-0 z-[100] hidden items-center justify-center p-3 sm:p-6 md:p-10 overflow-y-auto"
+    role="dialog" 
+    aria-modal="true" 
+    aria-labelledby="modal-cs3-title"
+  >
+    <!-- Dark Backdrop Overlay -->
+    <div 
+      id="backdrop-cs3" 
+      class="fixed inset-0 bg-[#1F2937]/75 backdrop-blur-sm transition-opacity duration-300 cursor-pointer pointer-events-auto"
+    ></div>
+
+    <!-- Modal Dialog Box -->
+    <div 
+      id="container-cs3"
+      class="relative w-full max-w-4xl bg-white rounded-2xl shadow-2xl border border-brand-borderLight overflow-hidden z-10 my-auto flex flex-col max-h-[90vh] pointer-events-auto"
+    >
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between px-5 sm:px-8 md:px-10 py-4 sm:py-5 border-b border-brand-borderLight bg-[#FAFAFA]">
+        <div class="flex items-center gap-2 sm:gap-3">
+          <span class="px-2.5 sm:px-3 py-1 rounded text-[10px] sm:text-xs font-bold uppercase tracking-wider bg-brand-orangeSoft text-brand-orange">
+            Deep Dive & Interactive Demo
+          </span>
+          <span class="text-xs text-brand-charcoalMuted hidden sm:inline">Case Study (03)</span>
+        </div>
+        
+        <!-- Close "X" Button -->
+        <button 
+          type="button" 
+          id="btn-close-cs3" 
+          class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white border border-brand-borderLight flex items-center justify-center text-brand-charcoal hover:text-brand-orange hover:bg-brand-orangeSoft transition-colors focus:outline-none shrink-0"
+          aria-label="Close modal"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Modal Content (Scrollable) -->
+      <div class="px-5 sm:px-8 md:px-10 py-6 sm:py-8 overflow-y-auto space-y-6 sm:space-y-8 text-brand-charcoal">
+        <div>
+          <h3 id="modal-cs3-title" class="font-serif-heading text-xl sm:text-2xl md:text-4xl font-bold text-brand-charcoal leading-snug">
+            Multi-Branch Operational Dashboard
+          </h3>
+        </div>
+
+        <div class="space-y-4 sm:space-y-6">
+          <!-- The Bottleneck -->
+          <div class="p-5 sm:p-7 rounded-xl bg-[#FAFAFA] border border-brand-borderLight transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-red-200 group">
+            <div class="flex items-center gap-3 mb-2.5 sm:mb-3">
+              <span class="w-2.5 h-2.5 rounded-full bg-red-500 group-hover:scale-125 transition-transform duration-300"></span>
+              <h4 class="font-serif-heading text-base sm:text-lg md:text-xl font-bold text-red-600 tracking-normal">The Bottleneck</h4>
+            </div>
+            <p class="text-sm sm:text-[15px] text-gray-600 leading-relaxed sm:leading-loose font-sans">
+              Scaling food brands suffer from severe operational confusion, siloed data across branches, and rising management overhead as they attempt to track orders, inventory, staff, and sales manually.
+            </p>
+          </div>
+
+          <!-- The Architecture -->
+          <div class="p-5 sm:p-7 rounded-xl bg-[#FAFAFA] border border-brand-borderLight transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-amber-200 group">
+            <div class="flex items-center gap-3 mb-2.5 sm:mb-3">
+              <span class="w-2.5 h-2.5 rounded-full bg-amber-500 group-hover:scale-125 transition-transform duration-300"></span>
+              <h4 class="font-serif-heading text-base sm:text-lg md:text-xl font-bold text-brand-charcoal tracking-normal">The Architecture</h4>
+            </div>
+            <p class="text-sm sm:text-[15px] text-gray-600 leading-relaxed sm:leading-loose font-sans">
+              Engineered a centralized digital command center. Built an intuitive, unified interface that aggregates multi-branch data—giving owners real-time control over orders, inventory tracking, staff scheduling, customer loyalty profiles, and cross-location sales metrics.
+            </p>
+          </div>
+
+          <!-- The ROI -->
+          <div class="p-5 sm:p-7 rounded-xl bg-brand-orangeSoft/60 border border-[#E05D36]/25 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-brand-orange group">
+            <div class="flex items-center gap-3 mb-2.5 sm:mb-3">
+              <span class="w-2.5 h-2.5 rounded-full bg-brand-orange group-hover:scale-125 transition-transform duration-300"></span>
+              <h4 class="font-serif-heading text-base sm:text-lg md:text-xl font-bold text-brand-orange tracking-normal">The ROI</h4>
+            </div>
+            <p class="text-sm sm:text-[15px] text-gray-600 leading-relaxed sm:leading-loose font-sans">
+              Enabled one-click visibility across the entire business ecosystem. This completely eliminated front-of-house operational bottlenecks and cut down administrative confusion, allowing management to make lightning-fast, data-driven decisions for franchise expansion.
+            </p>
+          </div>
+        </div>
+
+        <!-- Button Width: w-full md:w-auto -->
+        <div class="mt-6 pt-4 pb-2 border-t border-gray-100">
+          <a 
+            href="https://scalefnb.com/demo/franchise-hub" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="w-full md:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl text-base sm:text-lg font-bold text-white bg-[#E05D36] hover:bg-[#c84e2a] shadow-lg shadow-[#E05D36]/25 transition-all transform hover:-translate-y-0.5 active:translate-y-0"
+          >
+            <span>View Live Demo</span>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="px-5 sm:px-8 md:px-10 py-4 sm:py-5 bg-[#FAFAFA] border-t border-brand-borderLight flex flex-col md:flex-row items-center justify-between gap-3 sm:gap-4">
+        <span class="text-xs text-brand-charcoalMuted text-center md:text-left">Built to scale for 2 to 20+ multi-branch locations.</span>
+        <a 
+          href="mailto:scalefnb@gmail.com?subject=Franchise%20Hub%20Blueprint" 
+          class="w-full md:w-auto inline-flex items-center justify-center px-5 sm:px-6 py-2.5 rounded-lg text-sm font-semibold text-brand-charcoal hover:text-brand-orange bg-white hover:bg-gray-50 border border-brand-borderLight transition-colors"
+        >
+          Request Franchise Blueprint
+        </a>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ======================== UNIFIED SCRIPTS ======================== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Header Logo Smooth Scroll to Top
+      const logoLink = document.getElementById('header-logo-link');
+      if (logoLink) {
+        logoLink.addEventListener('click', (e) => {
+          e.preventDefault();
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+        });
+      }
+
+      // 2. Modals Configuration (Case Study 01, 02, and 03)
+      const modalsConfig = [
+        {
+          modalId: 'modal-cs1',
+          openBtnId: 'btn-open-cs1',
+          closeBtnId: 'btn-close-cs1',
+          backdropId: 'backdrop-cs1',
+          containerId: 'container-cs1'
+        },
+        {
+          modalId: 'modal-cs2',
+          openBtnId: 'btn-open-cs2',
+          closeBtnId: 'btn-close-cs2',
+          backdropId: 'backdrop-cs2',
+          containerId: 'container-cs2'
+        },
+        {
+          modalId: 'modal-cs3',
+          openBtnId: 'btn-open-cs3',
+          closeBtnId: 'btn-close-cs3',
+          backdropId: 'backdrop-cs3',
+          containerId: 'container-cs3'
+        }
+      ];
+
+      let activeOpenModals = 0;
+
+      function openModal(modalEl) {
+        modalEl.classList.remove('hidden');
+        modalEl.classList.add('flex');
+        activeOpenModals++;
+        document.body.style.overflow = 'hidden'; // Freeze background scrolling
+      }
+
+      function closeModal(modalEl) {
+        modalEl.classList.remove('flex');
+        modalEl.classList.add('hidden');
+        activeOpenModals = Math.max(0, activeOpenModals - 1);
+        if (activeOpenModals === 0) {
+          document.body.style.overflow = ''; // Restore background scrolling
+        }
+      }
+
+      // Attach event listeners for each modal
+      modalsConfig.forEach(({ modalId, openBtnId, closeBtnId, backdropId, containerId }) => {
+        const modal = document.getElementById(modalId);
+        const openBtn = document.getElementById(openBtnId);
+        const closeBtn = document.getElementById(closeBtnId);
+        const backdrop = document.getElementById(backdropId);
+        const container = document.getElementById(containerId);
+
+        if (!modal || !openBtn) return;
+
+        // Open trigger
+        openBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          openModal(modal);
+        });
+
+        // Close 'X' button trigger
+        closeBtn?.addEventListener('click', (e) => {
+          e.preventDefault();
+          closeModal(modal);
+        });
+
+        // Frictionless Close: Click on dark backdrop
+        backdrop?.addEventListener('click', (e) => {
+          e.preventDefault();
+          closeModal(modal);
+        });
+
+        // Frictionless Close: Click outside modal container on the wrapper
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) {
+            closeModal(modal);
+          }
+        });
+
+        // Prevent clicks inside the dialog from closing the modal
+        container?.addEventListener('click', (e) => {
+          e.stopPropagation();
+        });
+      });
+
+      // Accessibility: Close any open modal on Escape key press
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          modalsConfig.forEach(({ modalId }) => {
+            const modal = document.getElementById(modalId);
+            if (modal && !modal.classList.contains('hidden')) {
+              closeModal(modal);
+            }
+          });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
