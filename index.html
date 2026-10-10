@@ -59,14 +59,14 @@
 
   <!-- ======================== NAVIGATION ======================== -->
   <header class="sticky top-0 z-50 bg-[#FAFAFA]/95 backdrop-blur-md border-b border-brand-borderLight transition-all">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-3">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex justify-between items-center w-full">
       
-      <!-- Header Logo Anchor smoothly scrolling to top -->
+      <!-- Header Logo Anchor with mix-blend-multiply -->
       <a href="#top" id="header-logo-link" class="flex items-center group cursor-pointer shrink-0" aria-label="ScaleF&B - Back to top">
         <img 
           src="./logo.png" 
           alt="ScaleF&B Logo" 
-          class="h-8 sm:h-10 md:h-12 w-auto object-contain transition-transform duration-200 group-hover:scale-105"
+          class="h-8 sm:h-10 md:h-12 w-auto object-contain mix-blend-multiply transition-transform duration-200 group-hover:scale-105"
         >
       </a>
 
@@ -77,11 +77,10 @@
         <a href="#framework" class="hover:text-brand-orange transition-colors">The Framework</a>
       </nav>
 
-      <!-- Desktop & Mobile Right Actions -->
+      <!-- Right Actions: CTA hidden on mobile & tablet, visible on lg+ -->
       <div class="flex items-center gap-2 sm:gap-4 shrink-0">
-        <!-- Responsive Nav CTA -->
-        <a href="#cta" class="inline-flex items-center justify-center px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm font-semibold text-white bg-brand-orange hover:bg-brand-orangeHover shadow-sm transition-all transform active:scale-95 whitespace-nowrap">
-          <span class="hidden xs:inline">Let's </span>Map System
+        <a href="#cta" class="hidden lg:inline-flex items-center justify-center px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm font-semibold text-white bg-brand-orange hover:bg-brand-orangeHover shadow-sm transition-all transform active:scale-95 whitespace-nowrap">
+          Map Your System
         </a>
 
         <!-- Mobile Hamburger Toggle -->
@@ -111,7 +110,7 @@
         <a href="#framework" class="mobile-nav-link py-2 px-3 rounded-md hover:bg-brand-orangeSoft hover:text-brand-orange transition-colors">The Framework</a>
         <div class="pt-2">
           <a href="#cta" class="mobile-nav-link w-full inline-flex items-center justify-center px-4 py-3 rounded-lg text-sm font-bold text-white bg-brand-orange hover:bg-brand-orangeHover shadow-sm transition-all text-center">
-            Let's Map Out Your Digital System
+            Map Your System
           </a>
         </div>
       </nav>
@@ -175,8 +174,9 @@
 
 
   <!-- ======================== CASE STUDIES SECTION ======================== -->
+  <!-- Constrained with max-w-4xl mx-auto for clean tablet/desktop margins -->
   <section id="case-studies" class="py-14 sm:py-20 md:py-28 bg-white border-y border-brand-borderLight">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <!-- Section Header -->
       <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-14 md:mb-20">
@@ -205,7 +205,6 @@
               </span>
             </div>
 
-            <!-- Case Study Main Heading -->
             <h3 class="font-serif-heading text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-[#1F2937] mt-4 sm:mt-6 md:mt-8 mb-4 sm:mb-6 md:mb-8 leading-tight">
               Automated Custom Ordering System for Artisan Bakers
             </h3>
@@ -286,7 +285,6 @@
               </span>
             </div>
 
-            <!-- Case Study Main Heading -->
             <h3 class="font-serif-heading text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-[#1F2937] mt-4 sm:mt-6 md:mt-8 mb-4 sm:mb-6 md:mb-8 leading-tight">
               Commission-free direct ordering web apps for High Volume cloud kitchens
             </h3>
@@ -365,7 +363,6 @@
               </span>
             </div>
 
-            <!-- Case Study Main Heading -->
             <h3 class="font-serif-heading text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-[#1F2937] mt-4 sm:mt-6 md:mt-8 mb-4 sm:mb-6 md:mb-8 leading-tight">
               Multi-Branch operational Dashboard & franchise Hub for High-Traffic cafes
             </h3>
@@ -590,8 +587,8 @@
         Ready For Frictionless Growth?
       </span>
 
-      <!-- Fluid Micro Copy -->
-      <h2 class="font-serif-heading text-xl xs:text-2xl sm:text-4xl md:text-5xl font-bold leading-tight max-w-3xl mx-auto mb-4 sm:mb-6">
+      <!-- Proportional Tablet & Desktop Typography -->
+      <h2 class="font-serif-heading text-3xl md:text-4xl lg:text-5xl leading-tight md:leading-snug font-bold max-w-3xl mx-auto mb-4 sm:mb-6">
         Stop letting manual processes, chaotic DMs, and 30% commission fees dictate your growth.
       </h2>
       
