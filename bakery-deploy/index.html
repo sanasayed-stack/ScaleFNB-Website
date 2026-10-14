@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>Artisan Bakery System Demo — ScaleF&B</title>
+  <meta name="description" content="Interactive prototype for Case Study 01: Automated custom cake ordering flow with instant WhatsApp kitchen ticket formatting and live baker date-blocking." />
+
+  <!-- Google Fonts: Playfair Display & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              orange: '#E05D36',
+              orangeHover: '#c84e2a',
+              charcoal: '#1F2937',
+              charcoalLight: '#374151',
+              charcoalMuted: '#6B7280',
+              bgOffWhite: '#FAFAFA',
+              cardBg: '#FFFFFF',
+              borderLight: '#E5E7EB',
+              orangeSoft: '#FFF2EE'
+            },
+            wa: {
+              bg: '#EFEAE2',
+              greenHeader: '#075E54',
+              greenDark: '#128C7E',
+              bubbleOut: '#DCF8C6',
+              bubbleIn: '#FFFFFF',
+              check: '#34B7F1'
+            }
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #FAFAFA;
+      color: #1F2937;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    .font-serif-heading {
+      font-family: 'Playfair Display', Georgia, serif;
+    }
+  </style>
+</head>
+<body class="bg-brand-bgOffWhite text-brand-charcoal min-h-screen flex flex-col justify-between selection:bg-brand-orangeSoft selection:text-brand-orange">
+
+  <!-- ======================== TOP BAR / NAVIGATION ======================== -->
+  <header class="sticky top-0 z-50 bg-[#FAFAFA]/95 backdrop-blur-md border-b border-brand-borderLight transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex justify-between items-center w-full gap-3">
+      
+      <!-- Brand Logo Anchor with mix-blend-multiply -->
+      <div class="flex items-center gap-3">
+        <a href="index.html" class="flex items-center group shrink-0" aria-label="Return to ScaleF&B Portfolio">
+          <img 
+            src="./logo.png" 
+            alt="ScaleF&B Logo" 
+            class="h-9 md:h-10 w-auto object-contain mix-blend-multiply transition-transform duration-200 group-hover:scale-105"
+          >
+        </a>
+        <span class="hidden sm:inline-block w-px h-5 bg-brand-borderLight"></span>
+        <span class="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-bold tracking-wider uppercase bg-brand-orangeSoft text-brand-orange border border-brand-orange/20">
+          <span class="w-1.5 h-1.5 rounded-full bg-brand-orange animate-pulse"></span>
+          Case Study 01 Prototype
+        </span>
+      </div>
+
+      <!-- Compact Return Anchor -->
+      <a 
+        href="index.html" 
+        class="inline-flex items-center gap-1.5 text-xs md:text-sm font-semibold text-brand-charcoal hover:text-brand-orange bg-white hover:bg-brand-orangeSoft px-3 py-1.5 md:px-4 md:py-2 rounded-lg border border-brand-borderLight hover:border-brand-orange/30 transition-all shadow-sm shrink-0"
+      >
+        <span>&larr;</span>
+        <span>Back to ScaleF&B</span>
+      </a>
+
+    </div>
+  </header>
+
+  <!-- ======================== PROTOTYPE BANNER ======================== -->
+  <section class="border-b border-brand-borderLight bg-white py-5 sm:py-7">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 text-center sm:text-left">
+      <div>
+        <p class="text-brand-orange text-[11px] sm:text-xs font-bold uppercase tracking-widest mb-1">Interactive Walk-in Demo</p>
+        <h1 class="font-serif-heading text-xl sm:text-2xl md:text-3xl font-bold text-brand-charcoal">
+          Artisan Bakery Custom Order Workflow
+        </h1>
+        <p class="text-xs sm:text-sm text-brand-charcoalLight mt-0.5">
+          Make selections in the Customer Form on the left. Watch the WhatsApp order ticket format and calculate deposits on the right.
+        </p>
+      </div>
+      <div class="inline-flex items-center justify-center gap-2 px-3 py-1.5 rounded-xl bg-[#FAFAFA] border border-brand-borderLight text-xs text-brand-charcoalLight self-center sm:self-auto shrink-0 shadow-sm">
+        <span class="w-2 h-2 rounded-full bg-emerald-500 shrink-0 animate-ping"></span>
+        <span class="font-medium">Live Bi-Directional State Active</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== SIDE-BY-SIDE MAIN WORKSPACE ======================== -->
+  <main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6 md:py-10">
+    <!-- Grid activates side-by-side at md: (768px+) for laptops & desktops -->
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-start max-w-7xl mx-auto">
+
+      <!-- ======================================================== -->
+      <!-- LEFT: CUSTOMER VIEW (md:col-span-7)                      -->
+      <!-- ======================================================== -->
+      <div class="md:col-span-7 bg-white rounded-2xl border border-brand-borderLight p-5 sm:p-7 md:p-8 shadow-sm flex flex-col justify-between">
+        <div>
+          <!-- Section Tag -->
+          <div class="flex items-center justify-between pb-3.5 border-b border-brand-borderLight mb-5 sm:mb-6">
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-brand-orange"></span>
+              <span class="text-xs font-bold uppercase tracking-wider text-brand-charcoal">Customer View</span>
+            </div>
+            <span class="text-[11px] font-semibold text-brand-charcoalMuted">Commission-Free Web Menu</span>
+          </div>
+
+          <h2 class="font-serif-heading text-2xl sm:text-3xl font-bold text-brand-charcoal mb-1.5">
+            Build Your Custom Cake
+          </h2>
+          <p class="text-xs sm:text-sm text-brand-charcoalLight mb-6 leading-relaxed">
+            Select size, flavor, pickup date, and greeting. Orders are confirmed with an upfront 50% advance deposit.
+          </p>
+
+          <!-- 1. Cake Size Selector -->
+          <div class="mb-6">
+            <label class="block text-xs font-bold uppercase tracking-wider text-brand-charcoalMuted mb-2.5">
+              1. Select Cake Size &amp; Tier
+            </label>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              
+              <!-- 6-Inch Option -->
+              <button 
+                type="button" 
+                data-size="6-inch" 
+                data-price="65" 
+                class="size-btn text-left p-3.5 rounded-xl border border-brand-orange bg-brand-orangeSoft/50 transition-all cursor-pointer relative"
+              >
+                <div class="flex justify-between items-center mb-1">
+                  <span class="text-sm font-bold text-brand-charcoal">6-Inch Round</span>
+                  <span class="text-xs font-bold text-brand-orange">$65</span>
+                </div>
+                <p class="text-[11px] text-brand-charcoalMuted">Serves 6–8 guests</p>
+              </button>
+
+              <!-- 8-Inch Option -->
+              <button 
+                type="button" 
+                data-size="8-inch" 
+                data-price="95" 
+                class="size-btn text-left p-3.5 rounded-xl border border-brand-borderLight hover:border-brand-orange/40 bg-white transition-all cursor-pointer relative"
+              >
+                <div class="flex justify-between items-center mb-1">
+                  <span class="text-sm font-bold text-brand-charcoal">8-Inch Round</span>
+                  <span class="text-xs font-bold text-brand-orange">$95</span>
+                </div>
+                <p class="text-[11px] text-brand-charcoalMuted">Serves 12–16 guests</p>
+              </button>
+
+              <!-- 2-Tier Option -->
+              <button 
+                type="button" 
+                data-size="2-tier" 
+                data-price="160" 
+                class="size-btn text-left p-3.5 rounded-xl border border-brand-borderLight hover:border-brand-orange/40 bg-white transition-all cursor-pointer relative"
+              >
+                <div class="flex justify-between items-center mb-1">
+                  <span class="text-sm font-bold text-brand-charcoal">2-Tier Celebration</span>
+                  <span class="text-xs font-bold text-brand-orange">$160</span>
+                </div>
+                <p class="text-[11px] text-brand-charcoalMuted">Serves 24–30 guests</p>
+              </button>
+
+            </div>
+          </div>
+
+          <!-- 2. Visual Flavor Buttons -->
+          <div class="mb-6">
+            <label class="block text-xs font-bold uppercase tracking-wider text-brand-charcoalMuted mb-2.5">
+              2. Select Sponge &amp; Filling Flavor
+            </label>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              
+              <!-- Belgian Chocolate -->
+              <button 
+                type="button" 
+                data-flavor="Belgian Chocolate Truffle" 
+                class="flavor-btn text-left p-3 rounded-xl border border-brand-orange bg-brand-orangeSoft/50 transition-all flex items-center gap-3 cursor-pointer"
+              >
+                <span class="w-8 h-8 rounded-lg bg-amber-900/15 text-amber-900 flex items-center justify-center text-sm shrink-0">🍫</span>
+                <div>
+                  <p class="text-xs font-bold text-brand-charcoal leading-snug">Belgian Chocolate</p>
+                  <p class="text-[10px] text-brand-charcoalMuted">Dark Ganache</p>
+                </div>
+              </button>
+
+              <!-- Vanilla Bean -->
+              <button 
+                type="button" 
+                data-flavor="Madagascar Vanilla Bean" 
+                class="flavor-btn text-left p-3 rounded-xl border border-brand-borderLight hover:border-brand-orange/40 bg-white transition-all flex items-center gap-3 cursor-pointer"
+              >
+                <span class="w-8 h-8 rounded-lg bg-amber-100 text-amber-800 flex items-center justify-center text-sm shrink-0">🍦</span>
+                <div>
+                  <p class="text-xs font-bold text-brand-charcoal leading-snug">Vanilla Bean</p>
+                  <p class="text-[10px] text-brand-charcoalMuted">Swiss Meringue</p>
+                </div>
+              </button>
+
+              <!-- Red Velvet -->
+              <button 
+                type="button" 
+                data-flavor="Signature Red Velvet" 
+                class="flavor-btn text-left p-3 rounded-xl border border-brand-borderLight hover:border-brand-orange/40 bg-white transition-all flex items-center gap-3 cursor-pointer"
+              >
+                <span class="w-8 h-8 rounded-lg bg-rose-100 text-rose-800 flex items-center justify-center text-sm shrink-0">🍓</span>
+                <div>
+                  <p class="text-xs font-bold text-brand-charcoal leading-snug">Red Velvet</p>
+                  <p class="text-[10px] text-brand-charcoalMuted">Cream Cheese</p>
+                </div>
+              </button>
+
+            </div>
+          </div>
+
+          <!-- 3. Pickup Date Selector (Synchronized with Baker Blocker) -->
+          <div class="mb-6">
+            <div class="flex items-center justify-between mb-2.5">
+              <label class="block text-xs font-bold uppercase tracking-wider text-brand-charcoalMuted">
+                3. Pickup Date
+              </label>
+              <span id="date-warning" class="text-[11px] text-red-500 font-semibold hidden">
+                Selected date was just blocked by baker!
+              </span>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              
+              <!-- Saturday Button -->
+              <button 
+                type="button" 
+                id="customer-date-sat" 
+                data-date="Saturday, Oct 17" 
+                class="date-btn text-left p-3.5 rounded-xl border border-brand-orange bg-brand-orangeSoft/50 transition-all cursor-pointer relative"
+              >
+                <div class="flex items-center justify-between mb-1">
+                  <span class="text-sm font-bold text-brand-charcoal">Saturday</span>
+                  <span class="status-indicator text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">Available</span>
+                </div>
+                <p class="text-xs text-brand-charcoalMuted">Oct 17 • 10:00 AM – 3:00 PM</p>
+              </button>
+
+              <!-- Sunday Button -->
+              <button 
+                type="button" 
+                id="customer-date-sun" 
+                data-date="Sunday, Oct 18" 
+                class="date-btn text-left p-3.5 rounded-xl border border-brand-borderLight hover:border-brand-orange/40 bg-white transition-all cursor-pointer relative"
+              >
+                <div class="flex items-center justify-between mb-1">
+                  <span class="text-sm font-bold text-brand-charcoal">Sunday</span>
+                  <span class="status-indicator text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">Available</span>
+                </div>
+                <p class="text-xs text-brand-charcoalMuted">Oct 18 • 11:00 AM – 4:00 PM</p>
+              </button>
+
+            </div>
+          </div>
+
+          <!-- 4. Custom Message Inscription -->
+          <div class="mb-6">
+            <label for="custom-msg-input" class="block text-xs font-bold uppercase tracking-wider text-brand-charcoalMuted mb-2">
+              4. Custom Piping Message on Cake (Optional)
+            </label>
+            <input 
+              type="text" 
+              id="custom-msg-input" 
+              maxlength="45"
+              placeholder="e.g., Happy 30th Birthday Sarah!" 
+              value="Happy 30th Birthday Sarah!"
+              class="w-full px-4 py-3 rounded-xl border border-brand-borderLight focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/20 text-sm text-brand-charcoal outline-none transition-all placeholder:text-gray-400"
+            />
+            <p class="text-[11px] text-brand-charcoalMuted mt-1.5 flex justify-between">
+              <span>Included free with all celebration tiers</span>
+              <span id="char-counter">27/45 characters</span>
+            </p>
+          </div>
+
+          <!-- 5. Auto-Calculated Summary Box -->
+          <div class="rounded-xl border border-brand-orange/30 bg-brand-orangeSoft/60 p-4 sm:p-5 mb-5">
+            <div class="flex items-center justify-between text-xs text-brand-charcoalLight pb-2 border-b border-brand-orange/20 mb-2">
+              <span>Cake Base Total:</span>
+              <span id="summary-total" class="font-bold text-brand-charcoal text-sm">$65.00</span>
+            </div>
+            <div class="flex items-center justify-between text-xs sm:text-sm font-bold text-brand-charcoal pt-1">
+              <span class="flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-brand-orange"></span>
+                <span>Required 50% Advance Deposit:</span>
+              </span>
+              <span id="summary-deposit" class="text-brand-orange text-base sm:text-lg font-serif-heading font-bold">$32.50</span>
+            </div>
+            <p class="text-[11px] text-brand-charcoalMuted mt-2">
+              🔒 Advance deposit reserves kitchen capacity and unlocks ingredients procurement.
+            </p>
+          </div>
+        </div>
+
+        <button 
+          type="button" 
+          id="mock-send-btn" 
+          class="w-full py-3.5 px-6 rounded-xl bg-brand-orange hover:bg-brand-orangeHover text-white font-bold text-sm sm:text-base shadow-lg shadow-brand-orange/20 transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-[0.99]"
+        >
+          <span>Send Order Directly to WhatsApp</span>
+          <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- ======================================================== -->
+      <!-- RIGHT: BAKER VIEW & WHATSAPP (md:col-span-5 md:sticky)   -->
+      <!-- ======================================================== -->
+      <div class="md:col-span-5 md:sticky md:top-20 space-y-6">
+
+        <!-- 1. BAKER QUICK-CONTROL BAR -->
+        <div class="bg-white rounded-2xl border border-brand-borderLight p-5 sm:p-6 shadow-sm">
+          <div class="flex items-center justify-between pb-3.5 border-b border-brand-borderLight mb-3.5">
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+              <span class="text-xs font-bold uppercase tracking-wider text-brand-charcoal">Baker Control Panel</span>
+            </div>
+            <span class="text-[11px] font-semibold text-brand-charcoalMuted">Live Capacity Manager</span>
+          </div>
+
+          <p class="text-xs text-brand-charcoalLight mb-4 leading-relaxed">
+            Toggle dates off when kitchen oven capacity is filled. Changes update the customer form instantly without restarting the app.
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 gap-3">
+            
+            <!-- Saturday Toggle Box -->
+            <div class="flex items-center justify-between p-3 rounded-xl border border-brand-borderLight bg-[#FAFAFA]">
+              <div>
+                <p class="text-xs font-bold text-brand-charcoal">Saturday Schedule</p>
+                <p id="baker-sat-label" class="text-[11px] font-semibold text-emerald-600">Open for Bookings</p>
+              </div>
+              <label class="relative inline-flex items-center cursor-pointer">
+                <input type="checkbox" id="toggle-sat" class="sr-only peer" checked>
+                <div class="w-11 h-6 bg-gray-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-600"></div>
+              </label>
+            </div>
+
+            <!-- Sunday Toggle Box -->
+            <div class="flex items-center justify-between p-3 rounded-xl border border-brand-borderLight bg-[#FAFAFA]">
+              <div>
+                <p class="text-xs font-bold text-brand-charcoal">Sunday Schedule</p>
+                <p id="baker-sun-label" class="text-[11px] font-semibold text-emerald-600">Open for Bookings</p>
+              </div>
+              <label class="relative inline-flex items-center cursor-pointer">
+                <input type="checkbox" id="toggle-sun" class="sr-only peer" checked>
+                <div class="w-11 h-6 bg-gray-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-600"></div>
+              </label>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 2. REALISTIC LIVE WHATSAPP CHAT MOCKUP (UNCLIPPED FULL VISIBILITY) -->
+        <div class="bg-white rounded-2xl border border-brand-borderLight shadow-sm flex flex-col">
+          
+          <!-- WhatsApp Header -->
+          <div class="bg-wa-greenHeader px-4 py-3 sm:py-3.5 rounded-t-2xl flex items-center justify-between text-white">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-white/20 text-white flex items-center justify-center font-bold text-sm shrink-0 border border-white/30">
+                🎂
+              </div>
+              <div>
+                <div class="flex items-center gap-1.5">
+                  <h3 class="text-sm font-bold text-white leading-tight">Artisan Bakehouse Orders</h3>
+                  <span class="w-3.5 h-3.5 rounded-full bg-emerald-400 text-[9px] text-wa-greenHeader flex items-center justify-center font-extrabold" title="Verified Business">✓</span>
+                </div>
+                <p class="text-[11px] text-emerald-100 flex items-center gap-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                  <span>Direct Kitchen Terminal (Automated)</span>
+                </p>
+              </div>
+            </div>
+
+            <!-- Action Icons -->
+            <div class="flex items-center gap-3 text-white/80 text-sm">
+              <span class="cursor-pointer hover:text-white" title="Search">🔍</span>
+              <span class="cursor-pointer hover:text-white" title="Menu">⋮</span>
+            </div>
+          </div>
+
+          <!-- WhatsApp Chat Window Canvas (Unclipped, No Fixed Height, 100% Bubble Visibility) -->
+          <div class="bg-wa-bg p-3.5 sm:p-5 space-y-3.5" style="background-image: radial-gradient(rgba(0,0,0,0.06) 1px, transparent 1px); background-size: 16px 16px;">
+            
+            <!-- Date Divider -->
+            <div class="text-center my-1">
+              <span class="px-3 py-1 rounded-full bg-white/80 text-[10px] font-bold text-gray-600 uppercase tracking-wider shadow-xs">
+                Today
+              </span>
+            </div>
+
+            <!-- Incoming Automated Order Ticket Bubble -->
+            <div class="flex justify-end">
+              <div class="bg-wa-bubbleOut rounded-2xl rounded-tr-xs p-3.5 sm:p-4 max-w-[94%] shadow-sm border border-black/5 text-brand-charcoal text-xs sm:text-sm space-y-2.5">
+                
+                <!-- Ticket Header -->
+                <div class="border-b border-black/10 pb-2 flex items-center justify-between">
+                  <span class="font-extrabold text-brand-charcoal text-[11px] sm:text-xs tracking-wider uppercase flex items-center gap-1.5">
+                    <span>✨</span>
+                    <span>NEW CUSTOM CAKE ORDER</span>
+                  </span>
+                  <span class="text-[10px] text-gray-500 font-mono" id="ticket-time">10:42 AM</span>
+                </div>
+
+                <!-- Structured Spec Rows -->
+                <div class="space-y-1.5 font-mono text-[11px] sm:text-[12px] leading-relaxed">
+                  <div class="flex justify-between gap-2">
+                    <span class="text-gray-600">TIER/SIZE:</span>
+                    <strong id="ticket-size" class="text-brand-charcoal text-right">6-Inch Round ($65)</strong>
+                  </div>
+                  <div class="flex justify-between gap-2">
+                    <span class="text-gray-600">FLAVOR:</span>
+                    <strong id="ticket-flavor" class="text-brand-charcoal text-right">Belgian Chocolate Truffle</strong>
+                  </div>
+                  <div class="flex justify-between gap-2">
+                    <span class="text-gray-600">PICKUP DATE:</span>
+                    <strong id="ticket-date" class="text-brand-charcoal text-right">Saturday, Oct 17</strong>
+                  </div>
+                  <div class="border-t border-dashed border-black/10 pt-1.5">
+                    <span class="text-gray-600 block mb-0.5">INSCRIPTION:</span>
+                    <span id="ticket-msg" class="italic text-brand-charcoal block bg-white/60 p-2 rounded border border-black/5 font-sans break-words">
+                      "Happy 30th Birthday Sarah!"
+                    </span>
+                  </div>
+                </div>
+
+                <!-- Financial Breakdown -->
+                <div class="bg-white/80 rounded-xl p-2.5 border border-black/5 space-y-1 text-xs">
+                  <div class="flex justify-between font-medium text-gray-600">
+                    <span>Order Total:</span>
+                    <span id="ticket-total">$65.00</span>
+                  </div>
+                  <div class="flex justify-between font-bold text-brand-orange text-sm pt-1 border-t border-black/5">
+                    <span>Required Advance (50%):</span>
+                    <span id="ticket-deposit">$32.50</span>
+                  </div>
+                </div>
+
+                <!-- Read Receipts -->
+                <div class="flex items-center justify-end gap-1 text-[10px] text-gray-500 pt-0.5">
+                  <span>Delivered to Kitchen</span>
+                  <span class="text-wa-check font-bold">✓✓</span>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Auto-Reply Payment Prompt Bubble (Fully Visible, Unclipped) -->
+            <div class="flex justify-start">
+              <div class="bg-white rounded-2xl rounded-tl-xs p-3.5 sm:p-4 max-w-[94%] shadow-sm border border-emerald-500/30 text-brand-charcoal space-y-2">
+                
+                <!-- Refined Automated Label -->
+                <div class="flex items-center gap-1.5 text-[10px] sm:text-[11px] font-bold text-emerald-800 uppercase tracking-wide">
+                  <span class="w-2 h-2 rounded-full bg-emerald-500 shrink-0"></span>
+                  <span class="leading-tight">WHATSAPP BUSINESS AUTO-REPLY (INSTANT • ZERO MANUAL TYPING)</span>
+                </div>
+                
+                <p id="ticket-payment-prompt" class="text-xs sm:text-[13px] leading-relaxed font-semibold text-brand-charcoal bg-emerald-50/70 p-3 rounded-xl border border-emerald-200/80">
+                  To confirm order: Tap [+] in WhatsApp &rarr; Select Payment &rarr; Send 50% Deposit ($32.50) directly in chat.
+                </p>
+
+                <p class="text-[10px] text-gray-500 flex items-center justify-between pt-0.5">
+                  <span>Secured via Direct WhatsApp Pay</span>
+                  <span class="text-gray-400">Just now</span>
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Bottom Typing Bar -->
+          <div class="bg-white px-3 py-2.5 rounded-b-2xl border-t border-brand-borderLight flex items-center gap-2">
+            <span class="text-gray-400 text-lg px-1">😊</span>
+            <div class="flex-1 bg-gray-100 rounded-full px-4 py-1.5 text-xs text-gray-400 font-sans">
+              Type a reply to customer...
+            </div>
+            <button type="button" class="w-8 h-8 rounded-full bg-wa-greenDark text-white flex items-center justify-center text-xs shrink-0 cursor-default" aria-label="Voice message">
+              🎙
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ======================== FOOTER ======================== -->
+  <footer class="bg-white border-t border-brand-borderLight py-7 mt-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+      <p class="text-xs text-brand-charcoalMuted">
+        &copy; 2026 ScaleF&B. Artisan Bakery Systems Demo. Proprietary zero-commission direct workflow.
+      </p>
+      <div class="flex items-center gap-4 text-xs font-semibold text-brand-charcoalMuted">
+        <a href="index.html" class="hover:text-brand-orange transition-colors">Portfolio</a>
+        <a href="index.html#case-studies" class="hover:text-brand-orange transition-colors">Case Studies</a>
+        <a href="mailto:scalefnb@gmail.com" class="hover:text-brand-orange transition-colors">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ======================== JAVASCRIPT STATE ENGINE ======================== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Order State
+      const orderState = {
+        size: '6-Inch Round',
+        price: 65,
+        flavor: 'Belgian Chocolate Truffle',
+        date: 'Saturday, Oct 17',
+        customMsg: 'Happy 30th Birthday Sarah!'
+      };
+
+      // Baker Schedule State
+      const bakerAvailability = {
+        sat: true,
+        sun: true
+      };
+
+      // Left Elements
+      const sizeButtons = document.querySelectorAll('.size-btn');
+      const flavorButtons = document.querySelectorAll('.flavor-btn');
+      const satButton = document.getElementById('customer-date-sat');
+      const sunButton = document.getElementById('customer-date-sun');
+      const msgInput = document.getElementById('custom-msg-input');
+      const charCounter = document.getElementById('char-counter');
+      const dateWarning = document.getElementById('date-warning');
+      const summaryTotal = document.getElementById('summary-total');
+      const summaryDeposit = document.getElementById('summary-deposit');
+      const mockSendBtn = document.getElementById('mock-send-btn');
+
+      // Right Elements
+      const toggleSat = document.getElementById('toggle-sat');
+      const toggleSun = document.getElementById('toggle-sun');
+      const bakerSatLabel = document.getElementById('baker-sat-label');
+      const bakerSunLabel = document.getElementById('baker-sun-label');
+      const ticketSize = document.getElementById('ticket-size');
+      const ticketFlavor = document.getElementById('ticket-flavor');
+      const ticketDate = document.getElementById('ticket-date');
+      const ticketMsg = document.getElementById('ticket-msg');
+      const ticketTotal = document.getElementById('ticket-total');
+      const ticketDeposit = document.getElementById('ticket-deposit');
+      const ticketPaymentPrompt = document.getElementById('ticket-payment-prompt');
+      const ticketTime = document.getElementById('ticket-time');
+
+      // Set timestamp
+      const now = new Date();
+      ticketTime.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+      // Core Reactive Sync Engine
+      function renderState() {
+        const depositAmount = (orderState.price * 0.5).toFixed(2);
+        const totalFormatted = `$${orderState.price.toFixed(2)}`;
+        const depositFormatted = `$${depositAmount}`;
+
+        // 1. Update Left Form Summary Box
+        summaryTotal.textContent = totalFormatted;
+        summaryDeposit.textContent = depositFormatted;
+
+        // 2. Update Right WhatsApp Order Ticket
+        ticketSize.textContent = `${orderState.size} ($${orderState.price})`;
+        ticketFlavor.textContent = orderState.flavor;
+        ticketDate.textContent = orderState.date || '— (Please select an open date)';
+        ticketMsg.textContent = orderState.customMsg ? `"${orderState.customMsg}"` : '— (No message requested)';
+        ticketTotal.textContent = totalFormatted;
+        ticketDeposit.textContent = depositFormatted;
+
+        // 3. Update Auto-reply Prompt
+        ticketPaymentPrompt.textContent = `To confirm order: Tap [+] in WhatsApp → Select Payment → Send 50% Deposit (${depositFormatted}) directly in chat.`;
+      }
+
+      // 1. Size Selection
+      sizeButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          sizeButtons.forEach(b => {
+            b.classList.remove('border-brand-orange', 'bg-brand-orangeSoft/50');
+            b.classList.add('border-brand-borderLight', 'bg-white');
+          });
+          btn.classList.add('border-brand-orange', 'bg-brand-orangeSoft/50');
+          btn.classList.remove('border-brand-borderLight', 'bg-white');
+
+          const size = btn.getAttribute('data-size');
+          const price = parseFloat(btn.getAttribute('data-price'));
+
+          orderState.size = size === '6-inch' ? '6-Inch Round' : (size === '8-inch' ? '8-Inch Round' : '2-Tier Celebration');
+          orderState.price = price;
+
+          renderState();
+        });
+      });
+
+      // 2. Flavor Selection
+      flavorButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          flavorButtons.forEach(b => {
+            b.classList.remove('border-brand-orange', 'bg-brand-orangeSoft/50');
+            b.classList.add('border-brand-borderLight', 'bg-white');
+          });
+          btn.classList.add('border-brand-orange', 'bg-brand-orangeSoft/50');
+          btn.classList.remove('border-brand-borderLight', 'bg-white');
+
+          orderState.flavor = btn.getAttribute('data-flavor');
+          renderState();
+        });
+      });
+
+      // 3. Date Selection
+      function selectDate(dayKey, btnEl, dateStr) {
+        if (!bakerAvailability[dayKey]) return;
+
+        [satButton, sunButton].forEach(b => {
+          if (!b.disabled) {
+            b.classList.remove('border-brand-orange', 'bg-brand-orangeSoft/50');
+            b.classList.add('border-brand-borderLight', 'bg-white');
+          }
+        });
+
+        btnEl.classList.add('border-brand-orange', 'bg-brand-orangeSoft/50');
+        btnEl.classList.remove('border-brand-borderLight', 'bg-white');
+
+        orderState.date = dateStr;
+        dateWarning.classList.add('hidden');
+        renderState();
+      }
+
+      satButton.addEventListener('click', () => {
+        selectDate('sat', satButton, 'Saturday, Oct 17');
+      });
+
+      sunButton.addEventListener('click', () => {
+        selectDate('sun', sunButton, 'Sunday, Oct 18');
+      });
+
+      // 4. Custom Message Input
+      msgInput.addEventListener('input', (e) => {
+        orderState.customMsg = e.target.value.trim();
+        charCounter.textContent = `${e.target.value.length}/45 characters`;
+        renderState();
+      });
+
+      // 5. Two-Way Date Blocker Synchronization
+      function updateDateAvailability(dayKey, isAvailable) {
+        bakerAvailability[dayKey] = isAvailable;
+        const targetBtn = dayKey === 'sat' ? satButton : sunButton;
+        const labelEl = dayKey === 'sat' ? bakerSatLabel : bakerSunLabel;
+        const targetDateString = dayKey === 'sat' ? 'Saturday, Oct 17' : 'Sunday, Oct 18';
+        const indicatorEl = targetBtn.querySelector('.status-indicator');
+
+        if (!isAvailable) {
+          // Lock button functionally & visually
+          targetBtn.disabled = true;
+          targetBtn.classList.remove('border-brand-orange', 'bg-brand-orangeSoft/50', 'hover:border-brand-orange/40');
+          targetBtn.classList.add('bg-gray-100', 'border-gray-300', 'opacity-50', 'cursor-not-allowed');
+
+          indicatorEl.textContent = 'Sold Out';
+          indicatorEl.classList.remove('bg-emerald-100', 'text-emerald-800');
+          indicatorEl.classList.add('bg-red-100', 'text-red-700');
+
+          labelEl.textContent = 'Sold Out / Blocked';
+          labelEl.classList.remove('text-emerald-600');
+          labelEl.classList.add('text-red-600');
+
+          // Deselect if active
+          if (orderState.date === targetDateString) {
+            orderState.date = null;
+            dateWarning.classList.remove('hidden');
+          }
+        } else {
+          // Unlock button functionally & visually
+          targetBtn.disabled = false;
+          targetBtn.classList.remove('bg-gray-100', 'border-gray-300', 'opacity-50', 'cursor-not-allowed');
+          targetBtn.classList.add('bg-white', 'border-brand-borderLight');
+
+          indicatorEl.textContent = 'Available';
+          indicatorEl.classList.remove('bg-red-100', 'text-red-700');
+          indicatorEl.classList.add('bg-emerald-100', 'text-emerald-800');
+
+          labelEl.textContent = 'Open for Bookings';
+          labelEl.classList.remove('text-red-600');
+          labelEl.classList.add('text-emerald-600');
+
+          // Auto-reselect if no date was chosen
+          if (!orderState.date) {
+            selectDate(dayKey, targetBtn, targetDateString);
+          }
+        }
+
+        renderState();
+      }
+
+      toggleSat.addEventListener('change', (e) => {
+        updateDateAvailability('sat', e.target.checked);
+      });
+
+      toggleSun.addEventListener('change', (e) => {
+        updateDateAvailability('sun', e.target.checked);
+      });
+
+      // 6. Send Button Feedback
+      mockSendBtn.addEventListener('click', () => {
+        const originalText = mockSendBtn.innerHTML;
+        mockSendBtn.innerHTML = `
+          <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white inline" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+          Ticket Sent to WhatsApp Terminal!
+        `;
+        mockSendBtn.classList.add('bg-emerald-600');
+        mockSendBtn.classList.remove('bg-brand-orange', 'hover:bg-brand-orangeHover');
+
+        setTimeout(() => {
+          mockSendBtn.innerHTML = originalText;
+          mockSendBtn.classList.remove('bg-emerald-600');
+          mockSendBtn.classList.add('bg-brand-orange', 'hover:bg-brand-orangeHover');
+        }, 2000);
+      });
+
+      // Initial Render
+      renderState();
+    });
+  </script>
+
+</body>
+</html>=-
