@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>Cloud Kitchen Fast-Order System Demo — ScaleF&B</title>
+  <meta name="description" content="Interactive demo for Case Study 02: High-volume direct digital ordering with inline quantity controls, real-time WhatsApp ticket generation, and zero aggregator commission." />
+
+  <!-- Google Fonts: Plus Jakarta Sans & Playfair Display -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- FontAwesome 6 CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              orange: '#ea580c',
+              orangeHover: '#c2410c',
+              charcoal: '#1F2937',
+              charcoalLight: '#374151',
+              charcoalMuted: '#6B7280',
+              bgOffWhite: '#FAFAFA',
+              cardBg: '#FFFFFF',
+              borderLight: '#E5E7EB',
+              orangeSoft: '#FFF4EE'
+            },
+            wa: {
+              header: '#005E54',
+              teal: '#128C7E',
+              chatBg: '#ECE5DD',
+              bubbleIn: '#FFFFFF',
+              bubbleOut: '#DCF8C6',
+              checkBlue: '#34B7F1'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            serif: ['"Playfair Display"', 'Georgia', 'serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #FAFAFA;
+      color: #1F2937;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    .font-serif-heading {
+      font-family: 'Playfair Display', Georgia, serif;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="bg-brand-bgOffWhite text-brand-charcoal min-h-screen flex flex-col justify-between selection:bg-brand-orangeSoft selection:text-brand-orange relative">
+
+  <!-- ======================== HEADER ======================== -->
+  <header class="sticky top-0 z-40 bg-[#FAFAFA]/95 backdrop-blur-md border-b border-brand-borderLight transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex justify-between items-center w-full gap-3">
+      
+      <!-- Brand Logo / Badge -->
+      <div class="flex items-center gap-3">
+        <a href="cloud-kitchen-demo.html" class="flex items-center group shrink-0" aria-label="Return to ScaleF&B Portfolio">
+          <img 
+            src="https://scale-fnb-website.vercel.app/logo.png" 
+            onerror="this.onerror=null; this.src='./logo.png';" 
+            alt="ScaleF&B Logo" 
+            class="h-8 sm:h-9 md:h-10 w-auto object-contain mix-blend-multiply transition-transform duration-200 group-hover:scale-105"
+          >
+        </a>
+        <span class="hidden sm:inline-block w-px h-5 bg-brand-borderLight"></span>
+        <span class="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-bold tracking-wider uppercase bg-brand-orangeSoft text-brand-orange border border-brand-orange/20">
+          <i class="fa-solid fa-fire-burner text-xs animate-pulse"></i>
+          Case Study 02 Prototype
+        </span>
+      </div>
+
+      <!-- Action Anchor -->
+      <a 
+        href="index.html" 
+        class="inline-flex items-center gap-2 text-xs md:text-sm font-semibold text-brand-charcoal hover:text-brand-orange bg-white hover:bg-brand-orangeSoft px-3.5 py-2 rounded-lg border border-brand-borderLight hover:border-brand-orange/30 transition-all shadow-sm shrink-0"
+      >
+        <i class="fa-solid fa-arrow-left text-xs"></i>
+        <span>Back to ScaleF&B</span>
+      </a>
+
+    </div>
+  </header>
+
+  <!-- ======================== SUB-HERO BANNER ======================== -->
+  <section class="border-b border-brand-borderLight bg-white py-5 sm:py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-center sm:text-left">
+      <div>
+        <p class="text-brand-orange text-[11px] sm:text-xs font-bold uppercase tracking-widest mb-1">
+          Direct-to-Kitchen Ordering Engine
+        </p>
+        <h1 class="font-serif-heading text-xl sm:text-2xl md:text-3xl font-bold text-brand-charcoal">
+          High-Volume Cloud Kitchen Terminal
+        </h1>
+        <p class="text-xs sm:text-sm text-brand-charcoalLight mt-0.5">
+          Zero aggregator commissions (0%). Tap items or adjust quantities directly on each card; watch the ticket format live on the right.
+        </p>
+      </div>
+
+      <div class="inline-flex items-center justify-center gap-2 px-3 py-1.5 rounded-xl bg-emerald-50 border border-emerald-200 text-xs font-semibold text-emerald-800 self-center sm:self-auto shrink-0 shadow-sm">
+        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+        <span>Instant Aggregator Bypass Active</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== SPLIT-SCREEN WORKSPACE ======================== -->
+  <main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6 md:py-10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+
+      <!-- ======================================================== -->
+      <!-- LEFT COLUMN: THE FAST MENU (lg:col-span-7)              -->
+      <!-- ======================================================== -->
+      <div class="lg:col-span-7 bg-white rounded-2xl border border-brand-borderLight shadow-sm overflow-hidden flex flex-col justify-between pb-28 sm:pb-32 lg:pb-0">
+        
+        <div class="p-4 sm:p-6 md:p-7">
+          
+          <!-- Category Nav Header -->
+          <div class="flex items-center justify-between pb-3.5 border-b border-brand-borderLight mb-4">
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-brand-orange"></span>
+              <span class="text-xs font-bold uppercase tracking-wider text-brand-charcoal">Customer View</span>
+            </div>
+            <span class="text-[11px] font-semibold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+              0% Aggregator Fee
+            </span>
+          </div>
+
+          <!-- Sticky Horizontal Category Pills -->
+          <div class="sticky top-16 sm:top-20 z-20 bg-white pt-1 pb-3 mb-4 -mx-1 px-1">
+            <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
+              <button 
+                type="button" 
+                data-category="all" 
+                class="category-pill px-4 py-2 rounded-full text-xs font-bold transition-all bg-brand-orange text-white shadow-sm shrink-0 cursor-pointer active:scale-95"
+              >
+                <i class="fa-solid fa-bolt mr-1.5"></i>All Items
+              </button>
+              <button 
+                type="button" 
+                data-category="burgers" 
+                class="category-pill px-4 py-2 rounded-full text-xs font-bold transition-all bg-gray-100 text-brand-charcoal hover:bg-brand-orangeSoft hover:text-brand-orange shrink-0 cursor-pointer active:scale-95"
+              >
+                <i class="fa-solid fa-burger mr-1.5"></i>Burgers
+              </button>
+              <button 
+                type="button" 
+                data-category="sides" 
+                class="category-pill px-4 py-2 rounded-full text-xs font-bold transition-all bg-gray-100 text-brand-charcoal hover:bg-brand-orangeSoft hover:text-brand-orange shrink-0 cursor-pointer active:scale-95"
+              >
+                <i class="fa-solid fa-drumstick-bite mr-1.5"></i>Sides
+              </button>
+              <button 
+                type="button" 
+                data-category="drinks" 
+                class="category-pill px-4 py-2 rounded-full text-xs font-bold transition-all bg-gray-100 text-brand-charcoal hover:bg-brand-orangeSoft hover:text-brand-orange shrink-0 cursor-pointer active:scale-95"
+              >
+                <i class="fa-solid fa-glass-water mr-1.5"></i>Drinks
+              </button>
+            </div>
+          </div>
+
+          <!-- Menu Grid: grid-cols-1 for Mobile, md:grid-cols-2 for Tablet & Desktop -->
+          <div id="menu-grid" class="grid grid-cols-1 md:grid-cols-2 gap-3.5 sm:gap-4">
+
+            <!-- Item 1: Classic Smashburger -->
+            <div class="menu-card border border-brand-borderLight hover:border-brand-orange/40 rounded-xl p-3.5 sm:p-4 bg-[#FAFAFA] transition-all flex flex-col justify-between" data-category="burgers">
+              <div>
+                <div class="flex items-center justify-between gap-2 mb-1.5">
+                  <h3 class="font-bold text-sm sm:text-base text-brand-charcoal leading-snug">Classic Smashburger</h3>
+                  <span class="text-xs font-extrabold text-brand-orange bg-brand-orangeSoft px-2 py-0.5 rounded shrink-0">$12.00</span>
+                </div>
+                <p class="text-xs text-brand-charcoalMuted leading-relaxed mb-3">
+                  Double smashed prime beef, caramelized onions, melted cheddar, house secret sauce.
+                </p>
+              </div>
+              <div class="flex items-center justify-between pt-2.5 border-t border-brand-borderLight/60 gap-2">
+                <span class="text-[11px] font-medium text-gray-500 shrink-0"><i class="fa-regular fa-clock mr-1 text-gray-400"></i>6–8 min</span>
+                <!-- Inline Quantity Toggle Controller -->
+                <div class="item-control-wrapper shrink-0 min-w-[76px] flex justify-end" data-id="smashburger" data-name="Classic Smashburger" data-price="12.00">
+                  <button type="button" class="btn-single-add inline-flex items-center justify-center w-8 h-8 rounded-lg bg-brand-orange hover:bg-brand-orangeHover active:scale-90 text-white font-bold text-xs shadow-sm transition-all cursor-pointer" title="Add to bag">
+                    <i class="fa-solid fa-plus pointer-events-none"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 2: Truffle Swiss Smash -->
+            <div class="menu-card border border-brand-borderLight hover:border-brand-orange/40 rounded-xl p-3.5 sm:p-4 bg-[#FAFAFA] transition-all flex flex-col justify-between" data-category="burgers">
+              <div>
+                <div class="flex items-center justify-between gap-2 mb-1.5">
+                  <h3 class="font-bold text-sm sm:text-base text-brand-charcoal leading-snug">Truffle Swiss Smash</h3>
+                  <span class="text-xs font-extrabold text-brand-orange bg-brand-orangeSoft px-2 py-0.5 rounded shrink-0">$14.50</span>
+                </div>
+                <p class="text-xs text-brand-charcoalMuted leading-relaxed mb-3">
+                  Swiss emmental, roasted portobello mushrooms, black truffle aioli, toasted brioche.
+                </p>
+              </div>
+              <div class="flex items-center justify-between pt-2.5 border-t border-brand-borderLight/60 gap-2">
+                <span class="text-[11px] font-medium text-gray-500 shrink-0"><i class="fa-regular fa-clock mr-1 text-gray-400"></i>7–9 min</span>
+                <div class="item-control-wrapper shrink-0 min-w-[76px] flex justify-end" data-id="truffle-burger" data-name="Truffle Swiss Smash" data-price="14.50">
+                  <button type="button" class="btn-single-add inline-flex items-center justify-center w-8 h-8 rounded-lg bg-brand-orange hover:bg-brand-orangeHover active:scale-90 text-white font-bold text-xs shadow-sm transition-all cursor-pointer" title="Add to bag">
+                    <i class="fa-solid fa-plus pointer-events-none"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 3: Crispy Hot Chicken -->
+            <div class="menu-card border border-brand-borderLight hover:border-brand-orange/40 rounded-xl p-3.5 sm:p-4 bg-[#FAFAFA] transition-all flex flex-col justify-between" data-category="burgers">
+              <div>
+                <div class="flex items-center justify-between gap-2 mb-1.5">
+                  <h3 class="font-bold text-sm sm:text-base text-brand-charcoal leading-snug">Nashville Hot Chicken</h3>
+                  <span class="text-xs font-extrabold text-brand-orange bg-brand-orangeSoft px-2 py-0.5 rounded shrink-0">$13.00</span>
+                </div>
+                <p class="text-xs text-brand-charcoalMuted leading-relaxed mb-3">
+                  Buttermilk fried chicken thigh, cayenne glaze, dill pickle crunch, vinegar slaw.
+                </p>
+              </div>
+              <div class="flex items-center justify-between pt-2.5 border-t border-brand-borderLight/60 gap-2">
+                <span class="text-[11px] font-medium text-gray-500 shrink-0"><i class="fa-regular fa-clock mr-1 text-gray-400"></i>8–10 min</span>
+                <div class="item-control-wrapper shrink-0 min-w-[76px] flex justify-end" data-id="hot-chicken" data-name="Nashville Hot Chicken" data-price="13.00">
+                  <button type="button" class="btn-single-add inline-flex items-center justify-center w-8 h-8 rounded-lg bg-brand-orange hover:bg-brand-orangeHover active:scale-90 text-white font-bold text-xs shadow-sm transition-all cursor-pointer" title="Add to bag">
+                    <i class="fa-solid fa-plus pointer-events-none"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 4: Truffle Fries -->
+            <div class="menu-card border border-brand-borderLight hover:border-brand-orange/40 rounded-xl p-3.5 sm:p-4 bg-[#FAFAFA] transition-all flex flex-col justify-between" data-category="sides">
+              <div>
+                <div class="flex items-center justify-between gap-2 mb-1.5">
+                  <h3 class="font-bold text-sm sm:text-base text-brand-charcoal leading-snug">Truffle Fries</h3>
+                  <span class="text-xs font-extrabold text-brand-orange bg-brand-orangeSoft px-2 py-0.5 rounded shrink-0">$6.00</span>
+                </div>
+                <p class="text-xs text-brand-charcoalMuted leading-relaxed mb-3">
+                  Crisp skin-on russet potatoes tossed in white truffle oil, grated parmesan & chives.
+                </p>
+              </div>
+              <div class="flex items-center justify-between pt-2.5 border-t border-brand-borderLight/60 gap-2">
+                <span class="text-[11px] font-medium text-gray-500 shrink-0"><i class="fa-regular fa-clock mr-1 text-gray-400"></i>4 min</span>
+                <div class="item-control-wrapper shrink-0 min-w-[76px] flex justify-end" data-id="truffle-fries" data-name="Truffle Fries" data-price="6.00">
+                  <button type="button" class="btn-single-add inline-flex items-center justify-center w-8 h-8 rounded-lg bg-brand-orange hover:bg-brand-orangeHover active:scale-90 text-white font-bold text-xs shadow-sm transition-all cursor-pointer" title="Add to bag">
+                    <i class="fa-solid fa-plus pointer-events-none"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 5: Loaded Cajun Tenders -->
+            <div class="menu-card border border-brand-borderLight hover:border-brand-orange/40 rounded-xl p-3.5 sm:p-4 bg-[#FAFAFA] transition-all flex flex-col justify-between" data-category="sides">
+              <div>
+                <div class="flex items-center justify-between gap-2 mb-1.5">
+                  <h3 class="font-bold text-sm sm:text-base text-brand-charcoal leading-snug">Cajun Tenders (3pcs)</h3>
+                  <span class="text-xs font-extrabold text-brand-orange bg-brand-orangeSoft px-2 py-0.5 rounded shrink-0">$7.50</span>
+                </div>
+                <p class="text-xs text-brand-charcoalMuted leading-relaxed mb-3">
+                  Crispy breaded tenderloin strips served with chipotle lime dipping sauce.
+                </p>
+              </div>
+              <div class="flex items-center justify-between pt-2.5 border-t border-brand-borderLight/60 gap-2">
+                <span class="text-[11px] font-medium text-gray-500 shrink-0"><i class="fa-regular fa-clock mr-1 text-gray-400"></i>5 min</span>
+                <div class="item-control-wrapper shrink-0 min-w-[76px] flex justify-end" data-id="cajun-tenders" data-name="Cajun Tenders (3pcs)" data-price="7.50">
+                  <button type="button" class="btn-single-add inline-flex items-center justify-center w-8 h-8 rounded-lg bg-brand-orange hover:bg-brand-orangeHover active:scale-90 text-white font-bold text-xs shadow-sm transition-all cursor-pointer" title="Add to bag">
+                    <i class="fa-solid fa-plus pointer-events-none"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 6: Craft Root Beer -->
+            <div class="menu-card border border-brand-borderLight hover:border-brand-orange/40 rounded-xl p-3.5 sm:p-4 bg-[#FAFAFA] transition-all flex flex-col justify-between" data-category="drinks">
+              <div>
+                <div class="flex items-center justify-between gap-2 mb-1.5">
+                  <h3 class="font-bold text-sm sm:text-base text-brand-charcoal leading-snug">Craft Draft Soda</h3>
+                  <span class="text-xs font-extrabold text-brand-orange bg-brand-orangeSoft px-2 py-0.5 rounded shrink-0">$3.50</span>
+                </div>
+                <p class="text-xs text-brand-charcoalMuted leading-relaxed mb-3">
+                  Small-batch vanilla root beer brewed with cane sugar. Chilled glass bottle.
+                </p>
+              </div>
+              <div class="flex items-center justify-between pt-2.5 border-t border-brand-borderLight/60 gap-2">
+                <span class="text-[11px] font-medium text-gray-500 shrink-0"><i class="fa-regular fa-clock mr-1 text-gray-400"></i>Instant</span>
+                <div class="item-control-wrapper shrink-0 min-w-[76px] flex justify-end" data-id="craft-soda" data-name="Craft Draft Soda" data-price="3.50">
+                  <button type="button" class="btn-single-add inline-flex items-center justify-center w-8 h-8 rounded-lg bg-brand-orange hover:bg-brand-orangeHover active:scale-90 text-white font-bold text-xs shadow-sm transition-all cursor-pointer" title="Add to bag">
+                    <i class="fa-solid fa-plus pointer-events-none"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Sticky Bottom Cart & Checkout Footer -->
+        <div id="checkout-action-section" class="bg-brand-orangeSoft/70 border-t border-brand-orange/20 p-4 sm:p-6 scroll-mt-24">
+          
+          <!-- Running Cart Line Item Breakdown -->
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-brand-orange text-white text-xs font-extrabold flex items-center justify-center shadow-xs" id="cart-count">
+                0
+              </span>
+              <span class="text-xs sm:text-sm font-bold text-brand-charcoal">Running Cart Total</span>
+            </div>
+            <div class="text-right">
+              <span id="cart-total-display" class="font-serif-heading text-xl sm:text-2xl font-bold text-brand-charcoal">$0.00</span>
+            </div>
+          </div>
+
+          <!-- Dynamic Item Chips -->
+          <div id="cart-chips-container" class="flex flex-wrap gap-1.5 mb-4 max-h-24 overflow-y-auto py-1">
+            <span class="text-xs text-brand-charcoalMuted italic">Your bag is empty. Tap any '+' icon above to build an order.</span>
+          </div>
+
+          <!-- Primary Action Button: Send to WhatsApp -->
+          <button 
+            type="button" 
+            id="send-wa-order-btn" 
+            class="w-full py-3.5 sm:py-4 px-6 rounded-xl bg-brand-orange hover:bg-brand-orangeHover active:scale-[0.99] text-white font-bold text-sm sm:text-base shadow-lg shadow-brand-orange/25 transition-all flex items-center justify-center gap-2.5 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <i class="fa-brands fa-whatsapp text-lg"></i>
+            <span>Send Order to WhatsApp Terminal</span>
+            <i class="fa-solid fa-arrow-right text-xs ml-1"></i>
+          </button>
+          
+          <div class="flex items-center justify-between mt-2.5 text-[11px] text-brand-charcoalMuted px-1">
+            <span><i class="fa-solid fa-shield-halved text-emerald-600 mr-1"></i>Zero 3rd-party delivery commission</span>
+            <button type="button" id="clear-cart-btn" class="hover:text-red-600 underline font-semibold transition-colors cursor-pointer">Clear bag</button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ======================================================== -->
+      <!-- RIGHT COLUMN: WHATSAPP TERMINAL (lg:col-span-5, sticky) -->
+      <!-- ======================================================== -->
+      <div id="whatsapp-terminal-column" class="lg:col-span-5 lg:sticky lg:top-24 space-y-4">
+
+        <!-- Kitchen Terminal Diagnostic Banner -->
+        <div class="bg-white rounded-xl border border-brand-borderLight p-3.5 sm:p-4 shadow-sm flex items-center justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center shrink-0">
+              <i class="fa-solid fa-print"></i>
+            </div>
+            <div>
+              <p class="text-xs font-bold text-brand-charcoal">Cloud Kitchen Dispatch Receiver</p>
+              <p class="text-[11px] text-gray-500">Auto-routes to KDS &amp; POS instantly</p>
+            </div>
+          </div>
+          <span class="px-2 py-0.5 rounded text-[10px] font-extrabold bg-emerald-100 text-emerald-800 uppercase tracking-wider">
+            Connected
+          </span>
+        </div>
+
+        <!-- WhatsApp Web Mockup Card -->
+        <div class="bg-white rounded-2xl border border-brand-borderLight shadow-lg overflow-hidden flex flex-col">
+          
+          <!-- WhatsApp Top Bar -->
+          <div class="bg-wa-header px-4 py-3 sm:py-3.5 flex items-center justify-between text-white">
+            <div class="flex items-center gap-3">
+              <div class="relative">
+                <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/20 text-white flex items-center justify-center font-bold text-base shrink-0 border border-white/20">
+                  <i class="fa-solid fa-kitchen-set"></i>
+                </div>
+                <span class="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-400 border-2 border-wa-header"></span>
+              </div>
+              <div>
+                <div class="flex items-center gap-1.5">
+                  <h3 class="text-sm font-bold text-white leading-tight">SmashCloud Kitchen #04</h3>
+                  <i class="fa-solid fa-circle-check text-emerald-300 text-xs" title="Verified Business Terminal"></i>
+                </div>
+                <p class="text-[11px] text-emerald-100 flex items-center gap-1 font-mono">
+                  <span>+1 (555) 942-8800 • Line 1</span>
+                </p>
+              </div>
+            </div>
+
+            <!-- Action Controls -->
+            <div class="flex items-center gap-3 text-white/80 text-sm">
+              <i class="fa-solid fa-magnifying-glass cursor-pointer hover:text-white" title="Search Tickets"></i>
+              <i class="fa-solid fa-ellipsis-vertical cursor-pointer hover:text-white" title="Kitchen Options"></i>
+            </div>
+          </div>
+
+          <!-- WhatsApp Chat Window Canvas -->
+          <div 
+            id="wa-chat-window" 
+            class="bg-wa-chatBg p-3.5 sm:p-5 space-y-3.5 min-h-[420px] transition-all" 
+            style="background-image: radial-gradient(rgba(0,0,0,0.06) 1px, transparent 1px); background-size: 16px 16px;"
+          >
+            <!-- Date Pill -->
+            <div class="text-center my-1">
+              <span class="px-3 py-1 rounded-full bg-white/80 text-[10px] font-bold text-gray-600 uppercase tracking-wider shadow-xs">
+                Today
+              </span>
+            </div>
+
+            <!-- Empty State Bubble (When cart has 0 items) -->
+            <div id="wa-empty-state" class="flex justify-start">
+              <div class="bg-wa-bubbleIn rounded-2xl rounded-tl-xs p-3.5 sm:p-4 max-w-[90%] shadow-sm border border-black/5 text-xs text-brand-charcoal space-y-1.5">
+                <p class="font-bold text-brand-charcoal flex items-center gap-1.5 text-[11px] uppercase tracking-wider text-emerald-800">
+                  <i class="fa-solid fa-circle-info"></i>
+                  <span>Awaiting Incoming Order</span>
+                </p>
+                <p class="text-gray-600 leading-relaxed text-xs">
+                  Tap any item on the Left Menu to preview how an error-free, itemized ticket formats in real time without human manual entry.
+                </p>
+                <span class="text-[10px] text-gray-400 block text-right font-mono" id="wa-empty-time">--:--</span>
+              </div>
+            </div>
+
+            <!-- Live Formatted Ticket Bubble (Generated dynamically) -->
+            <div id="wa-ticket-container" class="hidden flex justify-end transition-all">
+              <div class="bg-wa-bubbleOut rounded-2xl rounded-tr-xs p-3.5 sm:p-4 max-w-[95%] sm:max-w-[90%] shadow-sm border border-black/5 text-xs space-y-2.5">
+                
+                <!-- Ticket Header -->
+                <div class="border-b border-black/10 pb-2 flex items-center justify-between">
+                  <span class="font-extrabold text-brand-charcoal text-[11px] sm:text-xs tracking-wider uppercase flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-brand-orange"></span>
+                    <span>ONLINE ORDER #<span id="ticket-number">2841</span></span>
+                  </span>
+                  <span class="text-[10px] text-gray-500 font-mono" id="ticket-time">12:00 PM</span>
+                </div>
+
+                <!-- Live Itemized Breakdown -->
+                <div class="space-y-1 font-mono text-[12px] text-brand-charcoal" id="ticket-items-list">
+                  <!-- Injected via JavaScript -->
+                </div>
+
+                <!-- Financial Totals Block -->
+                <div class="bg-white/80 rounded-xl p-2.5 border border-black/5 font-mono text-xs space-y-1">
+                  <div class="flex justify-between text-gray-600">
+                    <span>Subtotal:</span>
+                    <span id="ticket-subtotal">$0.00</span>
+                  </div>
+                  <div class="flex justify-between text-gray-600">
+                    <span>Aggregator Fee:</span>
+                    <span class="text-emerald-700 font-bold">$0.00 (Saved 30%)</span>
+                  </div>
+                  <div class="flex justify-between font-bold text-brand-charcoal text-sm pt-1 border-t border-black/5">
+                    <span>Total Due:</span>
+                    <span id="ticket-total">$0.00</span>
+                  </div>
+                </div>
+
+                <!-- Payment Status Tag -->
+                <div class="bg-emerald-50 rounded-lg p-2 border border-emerald-200 flex items-center justify-between text-[11px]">
+                  <span class="font-semibold text-emerald-800"><i class="fa-solid fa-lock mr-1"></i>Direct Payment</span>
+                  <span class="font-bold text-emerald-700">Pre-authorized</span>
+                </div>
+
+                <!-- WhatsApp Double Blue Checks -->
+                <div class="flex items-center justify-end gap-1 text-[10px] text-gray-500 pt-0.5">
+                  <span id="ticket-status-note">Received at kitchen tablet</span>
+                  <span class="text-wa-checkBlue font-bold"><i class="fa-solid fa-check-double"></i></span>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Automated Dispatch Notification Bubble -->
+            <div id="wa-kitchen-response" class="hidden flex justify-start transition-all">
+              <div class="bg-white rounded-2xl rounded-tl-xs p-3.5 max-w-[90%] shadow-sm border border-emerald-500/20 text-xs space-y-1.5">
+                <p class="font-bold text-emerald-800 text-[11px] uppercase tracking-wider flex items-center gap-1">
+                  <i class="fa-solid fa-robot"></i>
+                  <span>Kitchen Auto-Response</span>
+                </p>
+                <p class="text-brand-charcoal leading-relaxed text-xs font-medium">
+                  "Order received and sent to grill! Estimated prep time: 8-12 minutes. We will text you when it's packaged."
+                </p>
+                <div class="flex items-center justify-between pt-0.5 text-[10px] text-gray-400 font-mono">
+                  <span>Automated via WhatsApp Business API</span>
+                  <span>Just now</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- WhatsApp Bottom Mock Typing Bar -->
+          <div class="bg-white px-3 py-2.5 border-t border-brand-borderLight flex items-center gap-2">
+            <i class="fa-regular fa-face-smile text-gray-400 text-lg px-1 cursor-pointer hover:text-gray-600"></i>
+            <div class="flex-1 bg-gray-100 rounded-full px-4 py-2 text-xs text-gray-400 font-sans truncate">
+              Ticket automatically printed to kitchen display...
+            </div>
+            <button type="button" class="w-8 h-8 rounded-full bg-wa-teal text-white flex items-center justify-center text-xs shrink-0 cursor-default" aria-label="Microphone">
+              <i class="fa-solid fa-microphone"></i>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ======================================================== -->
+  <!-- 1. STICKY FLOATING CHECKOUT BAR (MOBILE / TABLET ONLY)   -->
+  <!-- ======================================================== -->
+  <div 
+    id="mobile-floating-checkout" 
+    class="hidden fixed bottom-0 left-0 w-full z-50 shadow-[0_-4px_20px_rgba(0,0,0,0.15)] bg-[#1f2937] text-white border-t border-gray-700/60 lg:hidden cursor-pointer transition-all transform duration-300 select-none"
+  >
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 sm:py-4 flex items-center justify-between gap-3">
+      
+      <!-- Left: Dynamic Price & Count Indicator -->
+      <div class="flex items-center gap-2.5">
+        <span id="mobile-bar-count" class="bg-brand-orange text-white text-[11px] sm:text-xs font-extrabold px-2.5 py-1 rounded-full shadow-xs">
+          0 items
+        </span>
+        <div>
+          <span class="text-[11px] text-gray-400 block font-medium leading-none">Order Total</span>
+          <span id="mobile-bar-total" class="font-serif-heading text-lg sm:text-xl font-bold text-white leading-tight">
+            $0.00
+          </span>
+        </div>
+      </div>
+
+      <!-- Right: Direct Checkout CTA -->
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-orange hover:bg-brand-orangeHover active:scale-95 text-white font-bold text-xs sm:text-sm shadow-md transition-all">
+        <span>Checkout</span>
+        <i class="fa-solid fa-arrow-right text-xs"></i>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ======================== FOOTER (WITH MOBILE BOTTOM PADDING BUFFER) ======================== -->
+  <footer class="bg-white border-t border-brand-borderLight pt-7 pb-28 sm:pb-32 lg:pb-7 mt-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+      <p class="text-xs text-brand-charcoalMuted">
+        &copy; 2026 ScaleF&B. Cloud Kitchen Systems Demo. High-volume direct WhatsApp pipeline.
+      </p>
+      <div class="flex items-center gap-4 text-xs font-semibold text-brand-charcoalMuted">
+        <a href="index.html" class="hover:text-brand-orange transition-colors">Portfolio</a>
+        <a href="index.html#case-studies" class="hover:text-brand-orange transition-colors">Case Studies</a>
+        <a href="mailto:hello@scalefnb.com" class="hover:text-brand-orange transition-colors">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ======================== JAVASCRIPT STATE ENGINE ======================== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Cart State: Keyed by Item ID
+      const cart = {};
+
+      // DOM Elements
+      const controlWrappers = document.querySelectorAll('.item-control-wrapper');
+      const categoryPills = document.querySelectorAll('.category-pill');
+      const menuCards = document.querySelectorAll('.menu-card');
+      const cartCountEl = document.getElementById('cart-count');
+      const cartTotalDisplay = document.getElementById('cart-total-display');
+      const cartChipsContainer = document.getElementById('cart-chips-container');
+      const sendWaOrderBtn = document.getElementById('send-wa-order-btn');
+      const clearCartBtn = document.getElementById('clear-cart-btn');
+      const checkoutActionSection = document.getElementById('checkout-action-section');
+
+      // Mobile Sticky Floating Bar Elements
+      const mobileFloatingCheckout = document.getElementById('mobile-floating-checkout');
+      const mobileBarCount = document.getElementById('mobile-bar-count');
+      const mobileBarTotal = document.getElementById('mobile-bar-total');
+
+      // WhatsApp Preview Elements
+      const waEmptyState = document.getElementById('wa-empty-state');
+      const waTicketContainer = document.getElementById('wa-ticket-container');
+      const waKitchenResponse = document.getElementById('wa-kitchen-response');
+      const ticketItemsList = document.getElementById('ticket-items-list');
+      const ticketSubtotal = document.getElementById('ticket-subtotal');
+      const ticketTotal = document.getElementById('ticket-total');
+      const ticketTime = document.getElementById('ticket-time');
+      const waEmptyTime = document.getElementById('wa-empty-time');
+      const waTerminalCol = document.getElementById('whatsapp-terminal-column');
+
+      // Set timestamps
+      function getFormattedTime() {
+        const now = new Date();
+        return now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      }
+      const initialTime = getFormattedTime();
+      ticketTime.textContent = initialTime;
+      waEmptyTime.textContent = initialTime;
+
+      // Add or increment item
+      function addItem(id, name, price) {
+        if (!cart[id]) {
+          cart[id] = { id, name, price: parseFloat(price), qty: 1 };
+        } else {
+          cart[id].qty += 1;
+        }
+        updateUI();
+      }
+
+      // Decrement item
+      function removeItem(id) {
+        if (!cart[id]) return;
+        cart[id].qty -= 1;
+        if (cart[id].qty <= 0) {
+          delete cart[id];
+        }
+        updateUI();
+      }
+
+      // Calculate totals
+      function calculateTotals() {
+        let totalItems = 0;
+        let totalPrice = 0;
+        Object.values(cart).forEach(item => {
+          totalItems += item.qty;
+          totalPrice += item.price * item.qty;
+        });
+        return { totalItems, totalPrice };
+      }
+
+      // Synchronize All UI Surfaces (Item Controls + Cart Total + Sticky Bar + WhatsApp Ticket)
+      function updateUI() {
+        const { totalItems, totalPrice } = calculateTotals();
+        const formattedTotal = `$${totalPrice.toFixed(2)}`;
+
+        // 1. Update Card Inline Quantity Controllers
+        controlWrappers.forEach(wrapper => {
+          const id = wrapper.getAttribute('data-id');
+          const name = wrapper.getAttribute('data-name');
+          const price = wrapper.getAttribute('data-price');
+          const currentQty = cart[id] ? cart[id].qty : 0;
+
+          if (currentQty > 0) {
+            // Render [ - ]  qty  [ + ] Inline Controller
+            wrapper.innerHTML = `
+              <div class="inline-flex items-center gap-1 bg-brand-orangeSoft border border-brand-orange/40 rounded-lg p-0.5 shadow-2xs transition-all">
+                <button 
+                  type="button" 
+                  class="btn-decrement w-6 h-6 rounded flex items-center justify-center bg-white text-brand-orange hover:bg-brand-orange hover:text-white transition-colors text-xs font-bold active:scale-90 cursor-pointer"
+                  data-id="${id}"
+                  title="Remove one"
+                >
+                  <i class="fa-solid fa-minus pointer-events-none text-[10px]"></i>
+                </button>
+                <span class="w-5 text-center font-extrabold text-xs text-brand-charcoal select-none">
+                  ${currentQty}
+                </span>
+                <button 
+                  type="button" 
+                  class="btn-increment w-6 h-6 rounded flex items-center justify-center bg-brand-orange text-white hover:bg-brand-orangeHover transition-colors text-xs font-bold active:scale-90 cursor-pointer"
+                  data-id="${id}"
+                  data-name="${name}"
+                  data-price="${price}"
+                  title="Add one"
+                >
+                  <i class="fa-solid fa-plus pointer-events-none text-[10px]"></i>
+                </button>
+              </div>
+            `;
+          } else {
+            // Revert back to single '+' button
+            wrapper.innerHTML = `
+              <button 
+                type="button" 
+                class="btn-single-add inline-flex items-center justify-center w-8 h-8 rounded-lg bg-brand-orange hover:bg-brand-orangeHover active:scale-90 text-white font-bold text-xs shadow-sm transition-all cursor-pointer"
+                data-id="${id}"
+                data-name="${name}"
+                data-price="${price}"
+                title="Add to bag"
+              >
+                <i class="fa-solid fa-plus pointer-events-none"></i>
+              </button>
+            `;
+          }
+        });
+
+        // 2. Update Running Cart Total Summary
+        cartCountEl.textContent = totalItems;
+        cartTotalDisplay.textContent = formattedTotal;
+
+        // 3. Update Sticky Mobile Floating Checkout Bar
+        if (totalItems > 0) {
+          mobileFloatingCheckout.classList.remove('hidden');
+          mobileBarCount.textContent = `${totalItems} ${totalItems === 1 ? 'item' : 'items'}`;
+          mobileBarTotal.textContent = formattedTotal;
+        } else {
+          mobileFloatingCheckout.classList.add('hidden');
+        }
+
+        // 4. Render Bottom Cart Chips
+        if (totalItems === 0) {
+          cartChipsContainer.innerHTML = `
+            <span class="text-xs text-brand-charcoalMuted italic">Your bag is empty. Tap any '+' icon above to build an order.</span>
+          `;
+          sendWaOrderBtn.disabled = true;
+
+          // Revert WhatsApp Terminal to Waiting Empty State
+          waEmptyState.classList.remove('hidden');
+          waTicketContainer.classList.add('hidden');
+          waKitchenResponse.classList.add('hidden');
+        } else {
+          sendWaOrderBtn.disabled = false;
+          cartChipsContainer.innerHTML = '';
+          Object.values(cart).forEach(item => {
+            const chip = document.createElement('div');
+            chip.className = 'inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white border border-brand-orange/30 text-xs font-semibold text-brand-charcoal shadow-2xs';
+            chip.innerHTML = `
+              <span>${item.qty}x ${item.name}</span>
+              <button type="button" class="decrement-chip-btn text-gray-400 hover:text-red-500 font-bold ml-1 text-xs cursor-pointer" data-id="${item.id}" title="Remove one">&times;</button>
+            `;
+            cartChipsContainer.appendChild(chip);
+          });
+
+          // 5. Render Live Formatted WhatsApp Ticket
+          waEmptyState.classList.add('hidden');
+          waTicketContainer.classList.remove('hidden');
+
+          ticketItemsList.innerHTML = '';
+          Object.values(cart).forEach(item => {
+            const line = document.createElement('div');
+            line.className = 'flex justify-between gap-2';
+            line.innerHTML = `
+              <span class="text-gray-700">${item.qty}x ${item.name}</span>
+              <span class="font-bold text-brand-charcoal text-right">$${(item.price * item.qty).toFixed(2)}</span>
+            `;
+            ticketItemsList.appendChild(line);
+          });
+
+          ticketSubtotal.textContent = formattedTotal;
+          ticketTotal.textContent = formattedTotal;
+          ticketTime.textContent = getFormattedTime();
+        }
+      }
+
+      // Smooth Scroll from Sticky Mobile Bar directly to checkout action section
+      mobileFloatingCheckout.addEventListener('click', () => {
+        if (checkoutActionSection) {
+          checkoutActionSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+
+      // Event Delegation for All Menu Card Buttons (Add, Increment, Decrement)
+      document.getElementById('menu-grid').addEventListener('click', (e) => {
+        const singleAdd = e.target.closest('.btn-single-add');
+        const incrementBtn = e.target.closest('.btn-increment');
+        const decrementBtn = e.target.closest('.btn-decrement');
+
+        if (singleAdd) {
+          e.preventDefault();
+          addItem(
+            singleAdd.getAttribute('data-id'),
+            singleAdd.getAttribute('data-name'),
+            singleAdd.getAttribute('data-price')
+          );
+        } else if (incrementBtn) {
+          e.preventDefault();
+          addItem(
+            incrementBtn.getAttribute('data-id'),
+            incrementBtn.getAttribute('data-name'),
+            incrementBtn.getAttribute('data-price')
+          );
+        } else if (decrementBtn) {
+          e.preventDefault();
+          removeItem(decrementBtn.getAttribute('data-id'));
+        }
+      });
+
+      // Event Delegation for Bottom Cart Chips
+      cartChipsContainer.addEventListener('click', (e) => {
+        const decBtn = e.target.closest('.decrement-chip-btn');
+        if (decBtn) {
+          const id = decBtn.getAttribute('data-id');
+          removeItem(id);
+        }
+      });
+
+      // Clear Bag Button
+      clearCartBtn.addEventListener('click', () => {
+        for (const key in cart) delete cart[key];
+        updateUI();
+      });
+
+      // Category Pill Filtering
+      categoryPills.forEach(pill => {
+        pill.addEventListener('click', () => {
+          categoryPills.forEach(p => {
+            p.classList.remove('bg-brand-orange', 'text-white', 'shadow-sm');
+            p.classList.add('bg-gray-100', 'text-brand-charcoal');
+          });
+          pill.classList.add('bg-brand-orange', 'text-white', 'shadow-sm');
+          pill.classList.remove('bg-gray-100', 'text-brand-charcoal');
+
+          const category = pill.getAttribute('data-category');
+          menuCards.forEach(card => {
+            if (category === 'all' || card.getAttribute('data-category') === category) {
+              card.classList.remove('hidden');
+            } else {
+              card.classList.add('hidden');
+            }
+          });
+        });
+      });
+
+      // Send to WhatsApp Button (Simulation + Mobile Smooth Scroll)
+      sendWaOrderBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const { totalItems } = calculateTotals();
+        if (totalItems === 0) return;
+
+        // Button Loading State
+        const originalText = sendWaOrderBtn.innerHTML;
+        sendWaOrderBtn.innerHTML = `
+          <i class="fa-solid fa-circle-notch fa-spin"></i>
+          <span>Printing Directly to Kitchen Terminal...</span>
+        `;
+        sendWaOrderBtn.classList.add('bg-emerald-600');
+        sendWaOrderBtn.classList.remove('bg-brand-orange', 'hover:bg-brand-orangeHover');
+
+        // Smooth scroll to the terminal on mobile/tablets
+        if (window.innerWidth < 1024 && waTerminalCol) {
+          waTerminalCol.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // Trigger Automated Kitchen Response in WhatsApp chat
+        setTimeout(() => {
+          waKitchenResponse.classList.remove('hidden');
+          sendWaOrderBtn.innerHTML = `
+            <i class="fa-solid fa-check"></i>
+            <span>Order Dispatched to Terminal!</span>
+          `;
+
+          setTimeout(() => {
+            sendWaOrderBtn.innerHTML = originalText;
+            sendWaOrderBtn.classList.remove('bg-emerald-600');
+            sendWaOrderBtn.classList.add('bg-brand-orange', 'hover:bg-brand-orangeHover');
+          }, 2400);
+        }, 600);
+      });
+
+      // Initial state render
+      updateUI();
+    });
+  </script>
+
+</body>
+</html>

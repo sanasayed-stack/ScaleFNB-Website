@@ -60,20 +60,16 @@
     }
   </style>
 </head>
-<body class="bg-brand-bgOffWhite text-brand-charcoal min-h-screen flex flex-col justify-between selection:bg-brand-orangeSoft selection:text-brand-orange">
+<body class="bg-brand-bgOffWhite text-brand-charcoal min-h-screen flex flex-col justify-between selection:bg-brand-orangeSoft selection:text-brand-orange relative">
 
   <!-- ======================== TOP BAR / NAVIGATION ======================== -->
   <header class="sticky top-0 z-50 bg-[#FAFAFA]/95 backdrop-blur-md border-b border-brand-borderLight transition-all">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex justify-between items-center w-full gap-3">
       
-      <!-- Brand Logo Anchor with mix-blend-multiply -->
+      <!-- Brand Logo Anchor with Absolute Deployment URL -->
       <div class="flex items-center gap-3">
         <a href="index.html" class="flex items-center group shrink-0" aria-label="Return to ScaleF&B Portfolio">
-          <img 
-            src="./logo.png" 
-            alt="ScaleF&B Logo" 
-            class="h-9 md:h-10 w-auto object-contain mix-blend-multiply transition-transform duration-200 group-hover:scale-105"
-          >
+          <img src="https://scale-fnb-website-qz6791bcx-sanasayed-stack.vercel.app/logo.png" alt="ScaleF&B Logo" class="h-9 md:h-10 w-auto mix-blend-multiply">
         </a>
         <span class="hidden sm:inline-block w-px h-5 bg-brand-borderLight"></span>
         <span class="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-bold tracking-wider uppercase bg-brand-orangeSoft text-brand-orange border border-brand-orange/20">
@@ -84,7 +80,7 @@
 
       <!-- Compact Return Anchor -->
       <a 
-        href="index.html" 
+        href="bakery-demo.html" 
         class="inline-flex items-center gap-1.5 text-xs md:text-sm font-semibold text-brand-charcoal hover:text-brand-orange bg-white hover:bg-brand-orangeSoft px-3 py-1.5 md:px-4 md:py-2 rounded-lg border border-brand-borderLight hover:border-brand-orange/30 transition-all shadow-sm shrink-0"
       >
         <span>&larr;</span>
@@ -115,13 +111,13 @@
 
   <!-- ======================== SIDE-BY-SIDE MAIN WORKSPACE ======================== -->
   <main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6 md:py-10">
-    <!-- Grid activates side-by-side at md: (768px+) for laptops & desktops -->
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-start max-w-7xl mx-auto">
+    <!-- Grid container: stacks vertically on < lg, activates 12 cols on lg: -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start max-w-7xl mx-auto">
 
       <!-- ======================================================== -->
-      <!-- LEFT: CUSTOMER VIEW (md:col-span-7)                      -->
+      <!-- 1. CUSTOMER VIEW (Mobile: order-1 | Desktop: col-span-7) -->
       <!-- ======================================================== -->
-      <div class="md:col-span-7 bg-white rounded-2xl border border-brand-borderLight p-5 sm:p-7 md:p-8 shadow-sm flex flex-col justify-between">
+      <div class="order-1 lg:order-none lg:col-span-7 bg-white rounded-2xl border border-brand-borderLight p-5 sm:p-7 md:p-8 shadow-sm flex flex-col justify-between">
         <div>
           <!-- Section Tag -->
           <div class="flex items-center justify-between pb-3.5 border-b border-brand-borderLight mb-5 sm:mb-6">
@@ -322,9 +318,10 @@
           </div>
         </div>
 
+        <!-- Submit Button (Explicit Anchor ID: id="send-btn") -->
         <button 
           type="button" 
-          id="mock-send-btn" 
+          id="send-btn" 
           class="w-full py-3.5 px-6 rounded-xl bg-brand-orange hover:bg-brand-orangeHover text-white font-bold text-sm sm:text-base shadow-lg shadow-brand-orange/20 transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-[0.99]"
         >
           <span>Send Order Directly to WhatsApp</span>
@@ -335,12 +332,14 @@
       </div>
 
       <!-- ======================================================== -->
-      <!-- RIGHT: BAKER VIEW & WHATSAPP (md:col-span-5 md:sticky)   -->
+      <!-- RIGHT COLUMN WRAPPER                                     -->
+      <!-- Mobile: contents (unwraps for order-2 and order-3)       -->
+      <!-- Desktop: lg:block lg:col-span-5 lg:sticky lg:top-8        -->
       <!-- ======================================================== -->
-      <div class="md:col-span-5 md:sticky md:top-20 space-y-6">
+      <div class="contents lg:block lg:col-span-5 lg:sticky lg:top-8 lg:space-y-6">
 
-        <!-- 1. BAKER QUICK-CONTROL BAR -->
-        <div class="bg-white rounded-2xl border border-brand-borderLight p-5 sm:p-6 shadow-sm">
+        <!-- 3. BAKER CONTROL PANEL (Mobile: order-3 | Desktop: order-none) -->
+        <div class="order-3 lg:order-none bg-white rounded-2xl border border-brand-borderLight p-5 sm:p-6 shadow-sm">
           <div class="flex items-center justify-between pb-3.5 border-b border-brand-borderLight mb-3.5">
             <div class="flex items-center gap-2">
               <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
@@ -353,7 +352,7 @@
             Toggle dates off when kitchen oven capacity is filled. Changes update the customer form instantly without restarting the app.
           </p>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 gap-3">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3">
             
             <!-- Saturday Toggle Box -->
             <div class="flex items-center justify-between p-3 rounded-xl border border-brand-borderLight bg-[#FAFAFA]">
@@ -382,8 +381,8 @@
           </div>
         </div>
 
-        <!-- 2. REALISTIC LIVE WHATSAPP CHAT MOCKUP (UNCLIPPED FULL VISIBILITY) -->
-        <div class="bg-white rounded-2xl border border-brand-borderLight shadow-sm flex flex-col">
+        <!-- 2. WHATSAPP TERMINAL (Mobile: order-2 | Desktop: order-none) -->
+        <div id="whatsapp-preview" class="order-2 lg:order-none bg-white rounded-2xl border border-brand-borderLight shadow-sm flex flex-col scroll-mt-20 sm:scroll-mt-24">
           
           <!-- WhatsApp Header -->
           <div class="bg-wa-greenHeader px-4 py-3 sm:py-3.5 rounded-t-2xl flex items-center justify-between text-white">
@@ -410,7 +409,7 @@
             </div>
           </div>
 
-          <!-- WhatsApp Chat Window Canvas (Unclipped, No Fixed Height, 100% Bubble Visibility) -->
+          <!-- WhatsApp Chat Window Canvas (Unclipped, No Fixed Height) -->
           <div class="bg-wa-bg p-3.5 sm:p-5 space-y-3.5" style="background-image: radial-gradient(rgba(0,0,0,0.06) 1px, transparent 1px); background-size: 16px 16px;">
             
             <!-- Date Divider -->
@@ -531,7 +530,7 @@
     </div>
   </footer>
 
-  <!-- ======================== JAVASCRIPT STATE ENGINE ======================== -->
+  <!-- ======================== JAVASCRIPT STATE ENGINE & SCROLL LOGIC ======================== -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       // Order State
@@ -559,7 +558,7 @@
       const dateWarning = document.getElementById('date-warning');
       const summaryTotal = document.getElementById('summary-total');
       const summaryDeposit = document.getElementById('summary-deposit');
-      const mockSendBtn = document.getElementById('mock-send-btn');
+      const sendBtn = document.getElementById('send-btn');
 
       // Right Elements
       const toggleSat = document.getElementById('toggle-sat');
@@ -679,7 +678,6 @@
         const indicatorEl = targetBtn.querySelector('.status-indicator');
 
         if (!isAvailable) {
-          // Lock button functionally & visually
           targetBtn.disabled = true;
           targetBtn.classList.remove('border-brand-orange', 'bg-brand-orangeSoft/50', 'hover:border-brand-orange/40');
           targetBtn.classList.add('bg-gray-100', 'border-gray-300', 'opacity-50', 'cursor-not-allowed');
@@ -692,13 +690,11 @@
           labelEl.classList.remove('text-emerald-600');
           labelEl.classList.add('text-red-600');
 
-          // Deselect if active
           if (orderState.date === targetDateString) {
             orderState.date = null;
             dateWarning.classList.remove('hidden');
           }
         } else {
-          // Unlock button functionally & visually
           targetBtn.disabled = false;
           targetBtn.classList.remove('bg-gray-100', 'border-gray-300', 'opacity-50', 'cursor-not-allowed');
           targetBtn.classList.add('bg-white', 'border-brand-borderLight');
@@ -711,7 +707,6 @@
           labelEl.classList.remove('text-red-600');
           labelEl.classList.add('text-emerald-600');
 
-          // Auto-reselect if no date was chosen
           if (!orderState.date) {
             selectDate(dayKey, targetBtn, targetDateString);
           }
@@ -728,23 +723,37 @@
         updateDateAvailability('sun', e.target.checked);
       });
 
-      // 6. Send Button Feedback
-      mockSendBtn.addEventListener('click', () => {
-        const originalText = mockSendBtn.innerHTML;
-        mockSendBtn.innerHTML = `
+      // 6. Smooth Scroll Logic to exact top of #whatsapp-preview with e.preventDefault()
+      function triggerTerminalScroll(e) {
+        if (e) e.preventDefault();
+        const previewTarget = document.getElementById('whatsapp-preview');
+        if (previewTarget) {
+          previewTarget.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+
+      // Send Button Listener: Visual spinner + smooth scroll
+      sendBtn?.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        const originalText = sendBtn.innerHTML;
+        sendBtn.innerHTML = `
           <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white inline" fill="none" viewBox="0 0 24 24">
             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
           </svg>
           Ticket Sent to WhatsApp Terminal!
         `;
-        mockSendBtn.classList.add('bg-emerald-600');
-        mockSendBtn.classList.remove('bg-brand-orange', 'hover:bg-brand-orangeHover');
+        sendBtn.classList.add('bg-emerald-600');
+        sendBtn.classList.remove('bg-brand-orange', 'hover:bg-brand-orangeHover');
+
+        // Execute smooth scroll to preview
+        triggerTerminalScroll(e);
 
         setTimeout(() => {
-          mockSendBtn.innerHTML = originalText;
-          mockSendBtn.classList.remove('bg-emerald-600');
-          mockSendBtn.classList.add('bg-brand-orange', 'hover:bg-brand-orangeHover');
+          sendBtn.innerHTML = originalText;
+          sendBtn.classList.remove('bg-emerald-600');
+          sendBtn.classList.add('bg-brand-orange', 'hover:bg-brand-orangeHover');
         }, 2000);
       });
 
@@ -754,4 +763,4 @@
   </script>
 
 </body>
-</html>=-
+</html>

@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>Command Center & Franchise Hub — ScaleF&B</title>
+  <meta name="description" content="Multi-Branch Operational Dashboard & Franchise Command Center for high-growth multi-unit restaurants with data isolation and global menu syncing." />
+
+  <!-- Google Fonts: Plus Jakarta Sans & Playfair Display -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- FontAwesome 6 CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              orange: '#E05D36',
+              orangeHover: '#c84e2a',
+              charcoal: '#1F2937',
+              charcoalLight: '#374151',
+              charcoalMuted: '#6B7280',
+              bgOffWhite: '#FAFAFA',
+              cardBg: '#FFFFFF',
+              borderLight: '#E5E7EB',
+              orangeSoft: '#FFF2EE'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            serif: ['"Playfair Display"', 'Georgia', 'serif']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background-color: #FAFAFA; color: #1F2937; font-family: 'Plus Jakarta Sans', sans-serif; }
+    .font-serif-heading { font-family: 'Playfair Display', Georgia, serif; }
+  </style>
+</head>
+<body class="bg-brand-bgOffWhite text-brand-charcoal min-h-screen flex flex-col justify-between selection:bg-brand-orangeSoft selection:text-brand-orange">
+
+  <!-- ======================== COMMAND HEADER ======================== -->
+  <header class="sticky top-0 z-50 bg-[#FAFAFA]/95 backdrop-blur-md border-b border-brand-borderLight">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 sm:py-4 md:py-0 min-h-16 md:h-20 flex flex-col md:flex-row justify-between items-start md:items-center w-full gap-4">
+      
+      <!-- Logo + Mode Badge -->
+      <div class="flex items-center justify-between w-full md:w-auto gap-3">
+        <div class="flex items-center gap-3">
+          <a href="franchise-dashboard.html" class="flex items-center group shrink-0" aria-label="Return to Portfolio">
+            <img src="https://scale-fnb-website.vercel.app/logo.png" onerror="this.onerror=null; this.src='./logo.png';" alt="ScaleF&B Logo" class="h-8 sm:h-9 md:h-10 w-auto object-contain mix-blend-multiply transition-transform duration-200 group-hover:scale-105">
+          </a>
+          <span class="hidden sm:inline-block w-px h-5 bg-brand-borderLight"></span>
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-bold tracking-wider uppercase bg-brand-orangeSoft text-brand-orange border border-brand-orange/20">
+            <i class="fa-solid fa-network-wired text-xs"></i>
+            Command Center #03
+          </span>
+        </div>
+      </div>
+
+      <!-- Scope Switcher: Stacked and fluid on mobile, inline on desktop -->
+      <div class="flex items-center justify-between md:justify-end w-full md:w-auto gap-2 sm:gap-3 flex-wrap sm:flex-nowrap">
+        <label for="scope-selector" class="text-xs font-bold uppercase tracking-wider text-brand-charcoalMuted hidden lg:inline">
+          View Scope:
+        </label>
+        <div class="relative flex-1 sm:flex-initial min-w-[210px]">
+          <select id="scope-selector" class="w-full appearance-none bg-white border border-brand-borderLight hover:border-brand-orange/40 text-xs sm:text-sm font-bold text-brand-charcoal rounded-lg pl-3 pr-8 py-2 cursor-pointer shadow-sm focus:outline-none focus:ring-2 focus:ring-brand-orange/30">
+            <option value="HQ">👑 HQ Global Command (5 Branches)</option>
+            <option value="B1">📍 Branch #1 (Downtown Express)</option>
+            <option value="B2">📍 Branch #2 (Financial District)</option>
+            <option value="B3">📍 Branch #3 (Uptown Metro)</option>
+            <option value="B4">📍 Branch #4 (Westside Cloud)</option>
+            <option value="B5">📍 Branch #5 (Airport Concourse)</option>
+          </select>
+          <i class="fa-solid fa-chevron-down absolute right-3 top-3 text-[10px] text-gray-400 pointer-events-none"></i>
+        </div>
+
+        <a href="index.html" class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-charcoal hover:text-brand-orange bg-white px-3 py-2 rounded-lg border border-brand-borderLight shadow-sm transition-all shrink-0">
+          <i class="fa-solid fa-arrow-left text-[11px]"></i>
+          <span class="hidden sm:inline">Portfolio</span>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ======================== COMMAND BANNER ======================== -->
+  <section class="border-b border-brand-borderLight bg-white py-5 sm:py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+      <div>
+        <div class="flex items-center gap-2 mb-1">
+          <span id="scope-indicator-dot" class="w-2.5 h-2.5 rounded-full bg-brand-orange animate-pulse"></span>
+          <span id="scope-indicator-text" class="text-xs font-bold uppercase tracking-widest text-brand-orange">HQ Multi-Unit Aggregate Scope</span>
+        </div>
+        <h1 id="scope-heading" class="font-serif-heading text-xl sm:text-2xl md:text-3xl font-bold text-brand-charcoal">
+          Global Franchise Command Center
+        </h1>
+        <p id="scope-description" class="text-xs sm:text-sm text-brand-charcoalLight mt-0.5">
+          Real-time enterprise load aggregation across all 5 physical operations. Isolated branch views available.
+        </p>
+      </div>
+
+      <!-- Live Broadcast Badge -->
+      <div class="flex items-center gap-2 text-xs font-semibold self-start md:self-auto">
+        <span class="px-3 py-1.5 rounded-lg bg-emerald-50 text-emerald-800 border border-emerald-200 flex items-center gap-1.5">
+          <i class="fa-solid fa-shield-halved text-emerald-600"></i>
+          <span id="isolation-status-label">Role Isolation Active</span>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== MAIN COMMAND WORKSPACE ======================== -->
+  <main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6 md:py-10 space-y-8">
+
+    <!-- KPI ROW: 4 Uniform White Metric Cards with Premium Hover States -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      
+      <!-- Total Revenue -->
+      <div class="bg-white p-5 rounded-xl border border-brand-borderLight shadow-sm flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-orange-500 cursor-pointer">
+        <div class="flex items-center justify-between text-brand-charcoalMuted mb-2">
+          <span class="text-xs font-bold uppercase tracking-wider">Gross Daily Revenue</span>
+          <i class="fa-solid fa-coins text-brand-orange"></i>
+        </div>
+        <div>
+          <h3 id="kpi-revenue" class="font-serif-heading text-2xl sm:text-3xl font-bold text-brand-charcoal">$0.00</h3>
+          <p id="kpi-revenue-sub" class="text-[11px] text-emerald-600 font-semibold mt-1"><i class="fa-solid fa-arrow-trend-up mr-1"></i>+18.4% vs last week</p>
+        </div>
+      </div>
+
+      <!-- Active Kitchen Tickets -->
+      <div class="bg-white p-5 rounded-xl border border-brand-borderLight shadow-sm flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-orange-500 cursor-pointer">
+        <div class="flex items-center justify-between text-brand-charcoalMuted mb-2">
+          <span class="text-xs font-bold uppercase tracking-wider">Active Grill Tickets</span>
+          <i class="fa-solid fa-receipt text-amber-500"></i>
+        </div>
+        <div>
+          <h3 id="kpi-tickets" class="font-serif-heading text-2xl sm:text-3xl font-bold text-brand-charcoal">0</h3>
+          <p id="kpi-tickets-sub" class="text-[11px] text-brand-charcoalMuted mt-1">Direct WhatsApp & In-Store KDS</p>
+        </div>
+      </div>
+
+      <!-- Network Average Prep Time -->
+      <div class="bg-white p-5 rounded-xl border border-brand-borderLight shadow-sm flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-orange-500 cursor-pointer">
+        <div class="flex items-center justify-between text-brand-charcoalMuted mb-2">
+          <span class="text-xs font-bold uppercase tracking-wider">Avg Ticket Velocity</span>
+          <i class="fa-solid fa-stopwatch text-indigo-500"></i>
+        </div>
+        <div>
+          <h3 id="kpi-velocity" class="font-serif-heading text-2xl sm:text-3xl font-bold text-brand-charcoal">0.0 min</h3>
+          <p id="kpi-velocity-sub" class="text-[11px] text-emerald-600 font-semibold mt-1">Under 8.5m SLA Target</p>
+        </div>
+      </div>
+
+      <!-- Aggregator Fees Bypassed (Uniform White Background + Hover) -->
+      <div class="bg-white p-5 rounded-xl border border-brand-borderLight shadow-sm flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-orange-500 cursor-pointer">
+        <div class="flex items-center justify-between text-brand-orange mb-2">
+          <span class="text-xs font-bold uppercase tracking-wider">3rd-Party Fees Saved</span>
+          <i class="fa-solid fa-piggy-bank"></i>
+        </div>
+        <div>
+          <h3 id="kpi-saved" class="font-serif-heading text-2xl sm:text-3xl font-bold text-brand-orange">$0.00</h3>
+          <p class="text-[11px] text-brand-charcoalMuted font-medium mt-1">30% marketplace commission saved</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- MAIN TWO COLUMN WORKBENCH -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+      <!-- LEFT: CENTRALIZED MASTER MENU (HQ Controlled) -->
+      <div class="lg:col-span-5 bg-white rounded-2xl border border-brand-borderLight shadow-sm p-5 sm:p-7">
+        
+        <div class="flex items-center justify-between pb-3.5 border-b border-brand-borderLight mb-5">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-brand-orange"></span>
+            <span class="text-xs font-bold uppercase tracking-wider text-brand-charcoal">Master Catalog Manager</span>
+          </div>
+          <span id="menu-broadcast-badge" class="text-[11px] font-bold text-brand-orange bg-brand-orangeSoft px-2.5 py-0.5 rounded border border-brand-orange/20">
+            HQ Master Broadcast
+          </span>
+        </div>
+
+        <div class="mb-4">
+          <h2 class="font-serif-heading text-xl sm:text-2xl font-bold text-brand-charcoal">Centralized Menu Distribution</h2>
+          <p class="text-xs sm:text-sm text-brand-charcoalLight mt-1">
+            Updating item pricing or stock at HQ immediately synchronizes all 5 operational locations in real time.
+          </p>
+        </div>
+
+        <!-- Master Item List -->
+        <div class="space-y-3 mb-6" id="master-menu-container">
+          <!-- Injected via JS -->
+        </div>
+
+        <!-- Broadcast Notification Box -->
+        <div id="broadcast-alert" class="hidden p-3.5 rounded-xl bg-emerald-50 border border-emerald-200 text-xs text-emerald-800 space-y-1 transition-all">
+          <div class="font-bold flex items-center gap-1.5">
+            <i class="fa-solid fa-satellite-dish animate-pulse"></i>
+            <span>Global Update Pushed Successfully</span>
+          </div>
+          <p class="text-[11px] text-emerald-700" id="broadcast-alert-msg">
+            Price changed. Sync packet received across all 5 branch nodes.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- RIGHT: LIVE KITCHEN QUEUES & INVENTORY -->
+      <div class="lg:col-span-7 space-y-6">
+
+        <!-- Branch Load Monitor Cards -->
+        <div class="bg-white rounded-2xl border border-brand-borderLight shadow-sm p-5 sm:p-7">
+          
+          <div class="flex items-center justify-between pb-3.5 border-b border-brand-borderLight mb-4">
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+              <span class="text-xs font-bold uppercase tracking-wider text-brand-charcoal">Live Location Telemetry</span>
+            </div>
+            <span class="text-[11px] text-gray-500 font-mono" id="last-ping-time">Updated: Just now</span>
+          </div>
+
+          <div id="branch-cards-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <!-- Injected via JS based on Scope -->
+          </div>
+
+        </div>
+
+        <!-- Active Order Feed with Mobile Horizontal Scroll Container -->
+        <div class="bg-white rounded-2xl border border-brand-borderLight shadow-sm overflow-hidden">
+          
+          <div class="p-5 border-b border-brand-borderLight flex items-center justify-between">
+            <div>
+              <h3 class="font-bold text-sm sm:text-base text-brand-charcoal">Active Ticket Stream</h3>
+              <p class="text-xs text-brand-charcoalMuted" id="feed-isolation-text">Monitoring all 5 branches</p>
+            </div>
+            <span class="text-[11px] font-bold text-gray-500 bg-gray-100 px-2.5 py-1 rounded">
+              <i class="fa-solid fa-arrows-rotate mr-1 text-gray-400"></i>Live Polling (0.5s)
+            </span>
+          </div>
+
+          <!-- Fixed Mobile Table Overflow Container -->
+          <div class="w-full overflow-x-auto overflow-y-hidden">
+            <table class="w-full min-w-[560px] text-left text-xs">
+              <thead class="bg-[#FAFAFA] text-brand-charcoalMuted uppercase font-bold border-b border-brand-borderLight">
+                <tr>
+                  <th class="py-3 px-4">Ticket</th>
+                  <th class="py-3 px-4">Branch Node</th>
+                  <th class="py-3 px-4">Order Items</th>
+                  <th class="py-3 px-4 text-right">Revenue</th>
+                  <th class="py-3 px-4 text-center">Status</th>
+                </tr>
+              </thead>
+              <tbody id="ticket-table-body" class="divide-y divide-brand-borderLight font-mono">
+                <!-- Dynamically Filtered Rows -->
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- ======================== FOOTER ======================== -->
+  <footer class="bg-white border-t border-brand-borderLight py-7 mt-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+      <p class="text-xs text-brand-charcoalMuted">
+        &copy; 2026 ScaleF&B. Multi-Branch Operational Command Center & Data Isolation Suite.
+      </p>
+      <div class="flex items-center gap-4 text-xs font-semibold text-brand-charcoalMuted">
+        <a href="index.html" class="hover:text-brand-orange transition-colors">Portfolio</a>
+        <a href="cloud-kitchen-demo.html" class="hover:text-brand-orange transition-colors">Kitchen Demo</a>
+        <a href="mailto:scalefnb@gmail.com" class="hover:text-brand-orange transition-colors">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ======================== FULL-STACK STATE & ISOLATION LOGIC ======================== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      
+      // 1. Master Menu Catalog (Global Single-Source of Truth)
+      const MasterMenu = [
+        { id: 'item-1', name: 'Classic Smashburger', category: 'Burgers', price: 12.00, inStock: true },
+        { id: 'item-2', name: 'Truffle Swiss Smash', category: 'Burgers', price: 14.50, inStock: true },
+        { id: 'item-3', name: 'Nashville Hot Chicken', category: 'Burgers', price: 13.00, inStock: true },
+        { id: 'item-4', name: 'Truffle Fries', category: 'Sides', price: 6.00, inStock: true },
+        { id: 'item-5', name: 'Cajun Tenders (3pcs)', category: 'Sides', price: 7.50, inStock: true },
+        { id: 'item-6', name: 'Craft Draft Soda', category: 'Drinks', price: 3.50, inStock: true }
+      ];
+
+      // 2. Physical Branch Nodes (5 Locations)
+      const Branches = {
+        'B1': { id: 'B1', name: 'Downtown Express', address: '104 Main St', activeTickets: 7, avgVelocity: '6.8 min', revenue: 2450.00, status: 'Peak Surge' },
+        'B2': { id: 'B2', name: 'Financial District', address: '88 Wall Ave', activeTickets: 4, avgVelocity: '7.2 min', revenue: 3120.50, status: 'Normal' },
+        'B3': { id: 'B3', name: 'Uptown Metro', address: '220 Lexington', activeTickets: 9, avgVelocity: '8.4 min', revenue: 1890.00, status: 'High Load' },
+        'B4': { id: 'B4', name: 'Westside Cloud', address: '50 Industrial Pkwy', activeTickets: 2, avgVelocity: '5.9 min', revenue: 1420.00, status: 'Normal' },
+        'B5': { id: 'B5', name: 'Airport Concourse', address: 'Terminal 2B Gate 14', activeTickets: 11, avgVelocity: '9.1 min', revenue: 4050.25, status: 'Peak Surge' }
+      };
+
+      // 3. Centralized Orders Database (Tag-Indexed by branchId)
+      const OrdersDB = [
+        { id: '#TK-9021', branchId: 'B1', items: '2x Classic Smashburger, 1x Truffle Fries', total: 30.00, status: 'On Grill' },
+        { id: '#TK-9022', branchId: 'B2', items: '1x Truffle Swiss Smash, 1x Craft Draft Soda', total: 18.00, status: 'Packaging' },
+        { id: '#TK-9023', branchId: 'B3', items: '3x Nashville Hot Chicken, 2x Cajun Tenders', total: 54.00, status: 'On Grill' },
+        { id: '#TK-9024', branchId: 'B5', items: '1x Classic Smashburger, 1x Craft Draft Soda', total: 15.50, status: 'Dispatched' },
+        { id: '#TK-9025', branchId: 'B1', items: '1x Nashville Hot Chicken, 1x Truffle Fries', total: 19.00, status: 'On Grill' },
+        { id: '#TK-9026', branchId: 'B4', items: '2x Truffle Swiss Smash', total: 29.00, status: 'Packaging' },
+        { id: '#TK-9027', branchId: 'B5', items: '4x Classic Smashburger, 4x Truffle Fries', total: 72.00, status: 'On Grill' },
+        { id: '#TK-9028', branchId: 'B2', items: '2x Cajun Tenders, 2x Craft Draft Soda', total: 22.00, status: 'Dispatched' },
+        { id: '#TK-9029', branchId: 'B3', items: '1x Classic Smashburger', total: 12.00, status: 'Packaging' },
+        { id: '#TK-9030', branchId: 'B5', items: '2x Nashville Hot Chicken', total: 26.00, status: 'On Grill' }
+      ];
+
+      // Current Active Session Scope ('HQ' or 'B1'..'B5')
+      let activeScope = 'HQ';
+
+      // Selectors
+      const scopeSelector = document.getElementById('scope-selector');
+      const scopeHeading = document.getElementById('scope-heading');
+      const scopeDescription = document.getElementById('scope-description');
+      const scopeIndicatorDot = document.getElementById('scope-indicator-dot');
+      const scopeIndicatorText = document.getElementById('scope-indicator-text');
+      const isolationStatusLabel = document.getElementById('isolation-status-label');
+      const feedIsolationText = document.getElementById('feed-isolation-text');
+      
+      const kpiRevenue = document.getElementById('kpi-revenue');
+      const kpiTickets = document.getElementById('kpi-tickets');
+      const kpiVelocity = document.getElementById('kpi-velocity');
+      const kpiSaved = document.getElementById('kpi-saved');
+      
+      const masterMenuContainer = document.getElementById('master-menu-container');
+      const branchCardsGrid = document.getElementById('branch-cards-grid');
+      const ticketTableBody = document.getElementById('ticket-table-body');
+      const broadcastAlert = document.getElementById('broadcast-alert');
+      const broadcastAlertMsg = document.getElementById('broadcast-alert-msg');
+      const menuBroadcastBadge = document.getElementById('menu-broadcast-badge');
+
+      // 4. Data Isolation Controller (Filters Data by Scope)
+      function renderView() {
+        const isHQ = activeScope === 'HQ';
+
+        // Update View Banner
+        if (isHQ) {
+          scopeHeading.textContent = 'Global Franchise Command Center';
+          scopeDescription.textContent = 'Real-time enterprise load aggregation across all 5 operational locations.';
+          scopeIndicatorDot.className = 'w-2.5 h-2.5 rounded-full bg-brand-orange animate-pulse';
+          scopeIndicatorText.textContent = 'HQ Multi-Unit Aggregate Scope';
+          isolationStatusLabel.textContent = 'Global Admin View';
+          feedIsolationText.textContent = 'Aggregating all 5 branches';
+          menuBroadcastBadge.textContent = 'HQ Master Broadcast (All Branches)';
+        } else {
+          const branch = Branches[activeScope];
+          scopeHeading.textContent = `${branch.name} — Local Station`;
+          scopeDescription.textContent = `Isolated security boundary: Showing ONLY localized data for Branch ${branch.id} (${branch.address}).`;
+          scopeIndicatorDot.className = 'w-2.5 h-2.5 rounded-full bg-emerald-500';
+          scopeIndicatorText.textContent = `Isolated Node: ${branch.name}`;
+          isolationStatusLabel.textContent = `Strict Isolation (Branch ${branch.id})`;
+          feedIsolationText.textContent = `Filtered exclusively for ${branch.name}`;
+          menuBroadcastBadge.textContent = `Menu Locked (Controlled by HQ)`;
+        }
+
+        // Calculate KPIs
+        let totalRevenue = 0;
+        let totalTickets = 0;
+        let velocitySum = 0;
+        let branchCount = 0;
+
+        if (isHQ) {
+          Object.values(Branches).forEach(b => {
+            totalRevenue += b.revenue;
+            totalTickets += b.activeTickets;
+            velocitySum += parseFloat(b.avgVelocity);
+            branchCount++;
+          });
+        } else {
+          const b = Branches[activeScope];
+          totalRevenue = b.revenue;
+          totalTickets = b.activeTickets;
+          velocitySum = parseFloat(b.avgVelocity);
+          branchCount = 1;
+        }
+
+        const avgVelocity = (velocitySum / branchCount).toFixed(1);
+        const savedFees = (totalRevenue * 0.30).toFixed(2);
+
+        kpiRevenue.textContent = `$${totalRevenue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+        kpiTickets.textContent = totalTickets;
+        kpiVelocity.textContent = `${avgVelocity} min`;
+        kpiSaved.textContent = `$${parseFloat(savedFees).toLocaleString('en-US', { minimumFractionDigits: 2 })}`;
+
+        // Render Branch Telemetry Cards
+        branchCardsGrid.innerHTML = '';
+        const branchesToRender = isHQ ? Object.values(Branches) : [Branches[activeScope]];
+
+        branchesToRender.forEach(b => {
+          const card = document.createElement('div');
+          const statusBg = b.status === 'Peak Surge' ? 'bg-rose-50 text-rose-700 border-rose-200' : (b.status === 'High Load' ? 'bg-amber-50 text-amber-700 border-amber-200' : 'bg-emerald-50 text-emerald-700 border-emerald-200');
+
+          card.className = 'p-4 rounded-xl border border-brand-borderLight bg-[#FAFAFA] flex flex-col justify-between';
+          card.innerHTML = `
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-1">
+                <h4 class="font-bold text-sm text-brand-charcoal">${b.name}</h4>
+                <span class="text-[10px] font-bold px-2 py-0.5 rounded border ${statusBg}">${b.status}</span>
+              </div>
+              <p class="text-[11px] text-brand-charcoalMuted mb-3"><i class="fa-solid fa-location-dot mr-1"></i>${b.address}</p>
+            </div>
+            <div class="grid grid-cols-2 gap-2 pt-2 border-t border-brand-borderLight text-xs">
+              <div>
+                <span class="text-[10px] text-gray-500 uppercase block">Active Load</span>
+                <span class="font-mono font-bold text-brand-charcoal">${b.activeTickets} tickets</span>
+              </div>
+              <div class="text-right">
+                <span class="text-[10px] text-gray-500 uppercase block">Day Rev</span>
+                <span class="font-mono font-bold text-brand-orange">$${b.revenue.toFixed(0)}</span>
+              </div>
+            </div>
+          `;
+          branchCardsGrid.appendChild(card);
+        });
+
+        // Render Active Orders Table with STRICT ISOLATION FILTER
+        ticketTableBody.innerHTML = '';
+        const filteredOrders = isHQ ? OrdersDB : OrdersDB.filter(order => order.branchId === activeScope);
+
+        if (filteredOrders.length === 0) {
+          ticketTableBody.innerHTML = `
+            <tr><td colspan="5" class="py-6 text-center text-gray-400 italic font-sans text-xs">No active orders queued for this isolated branch.</td></tr>
+          `;
+        } else {
+          filteredOrders.forEach(o => {
+            const row = document.createElement('tr');
+            const branchName = Branches[o.branchId].name;
+            const statusClass = o.status === 'On Grill' ? 'bg-amber-100 text-amber-800' : (o.status === 'Packaging' ? 'bg-blue-100 text-blue-800' : 'bg-emerald-100 text-emerald-800');
+
+            row.className = 'hover:bg-gray-50 transition-colors';
+            row.innerHTML = `
+              <td class="py-3 px-4 font-bold text-brand-charcoal">${o.id}</td>
+              <td class="py-3 px-4 text-brand-charcoalLight font-sans font-semibold">${branchName}</td>
+              <td class="py-3 px-4 text-gray-600 font-sans truncate max-w-[200px]">${o.items}</td>
+              <td class="py-3 px-4 font-bold text-brand-orange text-right">$${o.total.toFixed(2)}</td>
+              <td class="py-3 px-4 text-center"><span class="px-2 py-0.5 rounded text-[10px] font-sans font-bold ${statusClass}">${o.status}</span></td>
+            `;
+            ticketTableBody.appendChild(row);
+          });
+        }
+
+        // Render Master Menu Panel
+        renderMasterMenu();
+      }
+
+      // 5. Centralized Master Menu Controller
+      function renderMasterMenu() {
+        const isHQ = activeScope === 'HQ';
+        masterMenuContainer.innerHTML = '';
+
+        MasterMenu.forEach(item => {
+          const row = document.createElement('div');
+          row.className = 'p-3 rounded-xl border border-brand-borderLight bg-[#FAFAFA] flex items-center justify-between gap-3';
+          row.innerHTML = `
+            <div class="flex items-center gap-2.5 truncate">
+              <span class="w-2 h-2 rounded-full ${item.inStock ? 'bg-emerald-500' : 'bg-red-400'} shrink-0"></span>
+              <div class="truncate">
+                <h4 class="font-bold text-xs sm:text-sm text-brand-charcoal truncate">${item.name}</h4>
+                <span class="text-[10px] text-gray-500">${item.category}</span>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2 shrink-0">
+              <div class="flex items-center gap-1 font-mono">
+                <span class="text-xs text-gray-500">$</span>
+                <input 
+                  type="number" 
+                  step="0.50" 
+                  value="${item.price.toFixed(2)}" 
+                  data-id="${item.id}"
+                  ${isHQ ? '' : 'disabled title="Only HQ can change pricing"'}
+                  class="master-price-input w-16 px-1.5 py-1 text-xs font-bold text-right rounded border ${isHQ ? 'border-brand-borderLight focus:border-brand-orange focus:ring-1 focus:ring-brand-orange' : 'bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed'} outline-none"
+                />
+              </div>
+              ${isHQ ? `
+                <button type="button" data-id="${item.id}" class="update-price-btn px-2.5 py-1 rounded bg-brand-orange hover:bg-brand-orangeHover text-white text-[11px] font-bold shadow-2xs transition-all cursor-pointer">
+                  Sync
+                </button>
+              ` : `
+                <span class="text-[10px] text-gray-400 font-bold px-1.5 py-0.5 rounded bg-gray-100">Locked</span>
+              `}
+            </div>
+          `;
+          masterMenuContainer.appendChild(row);
+        });
+      }
+
+      // 6. Live HQ Menu Price Sync Broadcaster
+      masterMenuContainer.addEventListener('click', (e) => {
+        const btn = e.target.closest('.update-price-btn');
+        if (!btn) return;
+
+        const itemId = btn.getAttribute('data-id');
+        const input = masterMenuContainer.querySelector(`.master-price-input[data-id="${itemId}"]`);
+        if (!input) return;
+
+        const newPrice = parseFloat(input.value);
+        if (isNaN(newPrice) || newPrice <= 0) return;
+
+        // Update in Master Catalog
+        const item = MasterMenu.find(i => i.id === itemId);
+        const oldPrice = item.price.toFixed(2);
+        item.price = newPrice;
+
+        // Show Broadcast Confirmation Toast
+        broadcastAlertMsg.textContent = `"${item.name}" updated from $${oldPrice} to $${newPrice.toFixed(2)}. Distributed to all 5 branch terminals.`;
+        broadcastAlert.classList.remove('hidden');
+
+        btn.innerHTML = `<i class="fa-solid fa-check"></i>`;
+        btn.classList.add('bg-emerald-600');
+        setTimeout(() => {
+          btn.innerHTML = 'Sync';
+          btn.classList.remove('bg-emerald-600');
+        }, 1200);
+
+        setTimeout(() => {
+          broadcastAlert.classList.add('hidden');
+        }, 5000);
+      });
+
+      // 7. Scope Switcher Listener (Enforces Role-Based Access Isolation)
+      scopeSelector.addEventListener('change', (e) => {
+        activeScope = e.target.value;
+        renderView();
+      });
+
+      // Initial Render
+      renderView();
+    });
+  </script>
+
+</body>
+</html>
